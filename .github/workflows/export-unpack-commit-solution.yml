@@ -13,7 +13,7 @@ jobs:
       source_branch: main
       commit_message: "initial commit"
       solution_export_folder: solution-export-temp
-      solution_package_source: "src/${{  }}/SolutionPackage"
+      solution_package_source: "src/${{ #{SOLUTION_NAME}# }}/SolutionPackage"
       branch_to_create: "${{ #{BRANCH_TO_CREATE}# }}"
 
     steps:

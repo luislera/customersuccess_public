@@ -5,14 +5,6 @@ name: export-unpack-commit-solution
 on:
   workflow_dispatch:
     inputs:
-      solution_name:
-        description: "name of the Solution in Dataverse environment"
-        required: true
-        default: yoursolutionname
-      environment_url:
-        description: "http endpoint of your Dataverse environment"
-        required: true
-        default: "https://[your-env].crm.dynamics.com"
       source_branch:
         description: "source branch"
         required: true
@@ -30,7 +22,7 @@ jobs:
 
     env:
       solution_export_folder: solution-export-temp
-      solution_package_source: "src/${{ github.event.inputs.solution_name }}/SolutionPackage"
+      solution_package_source: "src/${{ secrets.SOLUTION_NAME }}/SolutionPackage"
 
     steps:
       # Solutions cannot be exported/imported in parallel, so we queue
@@ -53,7 +45,7 @@ jobs:
       # - name: publish customizations
       #   uses: microsoft/powerplatform-actions/publish-solution@v0
       #   with:
-      #     environment-url: ${{ github.event.inputs.environment_url}}
+      #     environment-url: ${{ secrets.ENVIRONMENT_URL}}
       #     app-id: ${{ secrets.CLIENT_ID }}
       #     client-secret: ${{ secrets.CLIENT_SECRET }}
       #     tenant-id: ${{ secrets.TENANT_ID }}
@@ -61,29 +53,29 @@ jobs:
       - name: export-unmanaged-solution
         uses: microsoft/powerplatform-actions/export-solution@v0
         with:
-          environment-url: ${{ github.event.inputs.environment_url}}
+          environment-url: ${{ secrets.ENVIRONMENT_URL}}
           app-id: ${{ secrets.CLIENT_ID }}
           client-secret: ${{ secrets.CLIENT_SECRET }}
           tenant-id: ${{ secrets.TENANT_ID }}
-          solution-name: ${{ github.event.inputs.solution_name }}
-          solution-output-file: ${{ runner.temp }}/${{ env.solution_export_folder }}/${{ github.event.inputs.solution_name }}.zip
+          solution-name: ${{ secrets.SOLUTION_NAME }}
+          solution-output-file: ${{ runner.temp }}/${{ env.solution_export_folder }}/${{ secrets.SOLUTION_NAME }}.zip
           managed: false
 
       - name: export-managed-solution
         uses: microsoft/powerplatform-actions/export-solution@v0
         with:
-          environment-url: ${{ github.event.inputs.environment_url}}
+          environment-url: ${{ secrets.ENVIRONMENT_URL}}
           app-id: ${{ secrets.CLIENT_ID }}
           client-secret: ${{ secrets.CLIENT_SECRET }}
           tenant-id: ${{ secrets.TENANT_ID }}
-          solution-name: ${{ github.event.inputs.solution_name }}
-          solution-output-file: ${{ runner.temp }}/${{ env.solution_export_folder }}/${{ github.event.inputs.solution_name }}_managed.zip
+          solution-name: ${{ secrets.SOLUTION_NAME }}
+          solution-output-file: ${{ runner.temp }}/${{ env.solution_export_folder }}/${{ secrets.SOLUTION_NAME }}_managed.zip
           managed: true
 
       - name: unpack-solution action
         uses: microsoft/powerplatform-actions/unpack-solution@v0
         with:
-          solution-file: ${{ runner.temp }}/${{ env.solution_export_folder }}/${{ github.event.inputs.solution_name }}.zip
+          solution-file: ${{ runner.temp }}/${{ env.solution_export_folder }}/${{ secrets.SOLUTION_NAME }}.zip
           solution-folder: ${{ env.solution_package_source }}
           solution-type: "Both"
           overwrite-files: true

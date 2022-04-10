@@ -114,7 +114,7 @@ jobs:
         run: |
           git config --global user.name ${{ github.actor }}   
           git add --all
-          git commit -am "${{ github.event.inputs.commit_message }}"
+          git commit -am "${{ env.commit_message }}"
       - name: push to ${{ github.event.inputs.source_branch }}
         if: env.branch_to_create == ''
         run: |

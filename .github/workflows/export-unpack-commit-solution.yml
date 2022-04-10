@@ -7,14 +7,15 @@ on:
 
 jobs:
   export-from-dev:
+    environment: DEV
     runs-on: ubuntu-latest
 
     env:
       source_branch: main
       commit_message: "initial commit"
       solution_export_folder: solution-export-temp
-      solution_package_source: "src/${{ #{SOLUTION_NAME}# }}/SolutionPackage"
-      branch_to_create: "${{ #{BRANCH_TO_CREATE}# }}"
+      solution_package_source: "src/${{ secrets.SOLUTION_NAME }}/SolutionPackage"
+      branch_to_create: "${{ secrets.BRANCH_TO_CREATE }}"
 
     steps:
       # Solutions cannot be exported/imported in parallel, so we queue

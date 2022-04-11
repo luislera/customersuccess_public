@@ -5,19 +5,10 @@ on:
 jobs:
   export-from-dev:
     runs-on: ubuntu-latest
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Set up Node
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12
-  sync-branches:
-    runs-on: ubuntu-latest
-    name: Syncing branches
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Set up Node
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12
+      - name: Any Name Bash Test Step
+        shell: bash
+        run: |
+          echo "branch_to_create: ${{ env.branch_to_create }}"
+          echo "solution_package_source: ${{ env.solution_package_source }}"
+          echo "solution_export_folder: ${{ env.solution_export_folder }}"

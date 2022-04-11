@@ -4,6 +4,11 @@ name: export-unpack-commit-solution
 
 on:
   workflow_dispatch:
+    inputs:
+      environment:
+        required: true
+        description: "GitHub environment name to deploy to"
+        default: dev
 
 jobs:
   export-from-dev:

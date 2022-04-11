@@ -1,0 +1,9 @@
+{
+  "EnvironmentVariables": [
+    {
+      "SchemaName": "cr62a_Test",
+      "Value": "#{VAR_CITY}"
+    }
+  ],
+  "ConnectionReferences": []
+}

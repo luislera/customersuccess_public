@@ -1,0 +1,24 @@
+{
+  "contextVariables": [
+    {
+      "systemType": "City",
+      "initializerType": "UserQuestion",
+      "scope": "Session",
+      "greedySlotFillingEnabled": true,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "messages": {
+        "GetValue": [
+          "2704c244-0702-45e0-a82e-4cb71d86c95f"
+        ]
+      },
+      "isGlobal": true,
+      "id": "new_variable_1f29d3d1afae479d9a66d9752081af17_9984dd3cdaef495fb56447c982dd4bae",
+      "displayName": "user_city",
+      "createdTime": "2022-04-08T17:34:46.9828909Z",
+      "updatedTime": "2022-04-08T17:35:32.1676359Z",
+      "createdUserId": "35ae2206-2bb7-4b2a-ac2b-5e70f2a23f4a",
+      "updatedUserId": "35ae2206-2bb7-4b2a-ac2b-5e70f2a23f4a"
+    }
+  ]
+}

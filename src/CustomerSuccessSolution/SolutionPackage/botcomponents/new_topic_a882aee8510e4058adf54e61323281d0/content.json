@@ -1,0 +1,62 @@
+{
+  "intents": [
+    {
+      "triggerQueries": [
+        "entrees available for delivery",
+        "what dishes do you deliver",
+        "what meal options do you have",
+        "what meals can I order",
+        "meals"
+      ],
+      "dialogId": "new_topic_a882aee8510e4058adf54e61323281d0",
+      "isTriggeringEnabled": true,
+      "id": "new_topic_a882aee8510e4058adf54e61323281d0",
+      "displayName": "MealDelivery",
+      "createdTime": "2022-04-08T15:38:38.1103686Z",
+      "updatedTime": "2022-04-08T17:35:32.1676359Z",
+      "createdUserId": "35ae2206-2bb7-4b2a-ac2b-5e70f2a23f4a",
+      "updatedUserId": "35ae2206-2bb7-4b2a-ac2b-5e70f2a23f4a"
+    }
+  ],
+  "dialogs": [
+    {
+      "rootNodeId": "8e902780-2e1d-4f4b-a8f6-85c0edb5b8fd",
+      "dialogChangeNodes": [
+        {
+          "targetDialogId": "new_bot_1f29d3d1afae479d9a66d9752081af17.Meals.dialog",
+          "nodeType": "DialogChangeNode",
+          "id": "dcdb1908-8cd8-4682-906d-70fff33d2595"
+        }
+      ],
+      "questionNodes": [
+        {
+          "contextVariableId": "new_variable_1f29d3d1afae479d9a66d9752081af17_9984dd3cdaef495fb56447c982dd4bae",
+          "nodeType": "QuestionNode",
+          "id": "8e902780-2e1d-4f4b-a8f6-85c0edb5b8fd",
+          "defaultTargetNodeId": "dcdb1908-8cd8-4682-906d-70fff33d2595"
+        }
+      ],
+      "id": "new_topic_a882aee8510e4058adf54e61323281d0",
+      "displayName": "Untitled",
+      "createdTime": "2022-04-08T15:38:38.1103686Z",
+      "updatedTime": "2022-04-08T17:35:32.1676359Z",
+      "createdUserId": "35ae2206-2bb7-4b2a-ac2b-5e70f2a23f4a",
+      "updatedUserId": "35ae2206-2bb7-4b2a-ac2b-5e70f2a23f4a"
+    }
+  ],
+  "botMessages": [
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "What city are you in?"
+        }
+      },
+      "id": "2704c244-0702-45e0-a82e-4cb71d86c95f",
+      "createdTime": "2022-04-08T17:18:34.593Z",
+      "updatedTime": "2022-04-08T17:18:34.593Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "user-0"
+    }
+  ]
+}

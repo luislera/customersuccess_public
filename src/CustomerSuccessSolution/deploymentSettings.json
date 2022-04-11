@@ -1,0 +1,15 @@
+{
+  "EnvironmentVariables": [
+    {
+      "SchemaName": "new_User_city",
+      "Value": "#{VAR_CITY}"
+    }
+  ],
+  "ConnectionReferences": [
+    {
+      "LogicalName": "new_Office365",
+      "ConnectionId": "#{CON_OFFICE}",
+      "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_office365users"
+    }
+  ]
+}

@@ -36,8 +36,8 @@ jobs:
           echo "solution_export_folder: ${{ env.solution_export_folder }}"
 
   create-pr-with-solution:
-    runs-on: delete-and-import-unmanaged-solution
-    needs: build-deploy-solution
+    runs-on: ubuntu-latest
+    needs: delete-and-import-unmanaged-solution
     steps:
       - name: Any Name Bash Test Step
         shell: bash

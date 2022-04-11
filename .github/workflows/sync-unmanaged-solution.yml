@@ -2,14 +2,6 @@ name: sync-unmanaged-solution
 on:
   workflow_dispatch:
     inputs:
-      solution_name:
-        description: "name of the Solution in Dataverse environment"
-        required: true
-        default: yoursolutionname
-      environment_url:
-        description: "http endpoint of your Dataverse environment"
-        required: true
-        default: "https://[your-env].crm.dynamics.com"
       from_branch:
         description: "the ref(branch, commit, tag) that you want to import"
         required: true
@@ -17,9 +9,6 @@ on:
       to_branch:
         description: "branch"
         required: false
-    commit_message:
-      description: "message to provide for the commit"
-      required: true
 
 jobs:
   sync-branches:

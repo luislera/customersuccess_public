@@ -7,7 +7,7 @@ on:
 
 jobs:
   export-from-dev:
-    environment: DEV
+    environment: ${{ github.event.inputs.environment }}
     runs-on: ubuntu-latest
 
     env:

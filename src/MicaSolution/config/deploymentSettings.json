@@ -1,0 +1,24 @@
+{
+  "EnvironmentVariables": [
+    {
+      "SchemaName": "cr62a_AnotherVar",
+      "Value": "#{VAR_CITY}"
+    },
+    {
+      "SchemaName": "cr62a_Test",
+      "Value": ""
+    }
+  ],
+  "ConnectionReferences": [
+    {
+      "LogicalName": "cr62a_Dataverseconnection",
+      "ConnectionId": "#{CON_OFFICE}",
+      "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+    },
+    {
+      "LogicalName": "new_sharedoffice365_7684e",
+      "ConnectionId": "",
+      "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+    }
+  ]
+}

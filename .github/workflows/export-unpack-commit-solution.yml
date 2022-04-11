@@ -7,7 +7,7 @@ on:
     inputs:
       environment:
         required: true
-        description: "GitHub environment name to deploy to"
+        description: "GitHub environment name to use"
         default: dev
 
 jobs:

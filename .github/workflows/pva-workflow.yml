@@ -38,7 +38,17 @@ jobs:
           echo "source_branch: ${{ github.event.inputs.source_branch }}"
           echo "branch_to_create: ${{ github.event.inputs.branch_to_create }}"
           echo "commit_message: ${{ github.event.inputs.commit_message }}"
-        
+
+      - name: test2
+        id: test2
+        uses: actions/github-script@v5
+        with:
+          script: |
+            const runWorkflow = require('${{ env.workflow_scripts_path }}/js/test.js')
+            const solutionNamesString = '${{ github.event.inputs.solution_name }}'
+            const ref = '${{ github.ref }}'
+            await runWorkflow({ github, context, solutionNamesString, ref })
+
       - name: test
         id: test
         uses: actions/github-script@v5

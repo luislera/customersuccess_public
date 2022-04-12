@@ -27,6 +27,7 @@ jobs:
   export-unpack-commit-solution:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Any Name Bash Test Step
         shell: bash
         run: |

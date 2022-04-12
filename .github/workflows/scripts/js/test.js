@@ -1,7 +1,7 @@
 module.exports = async ({ github, context, solutionNamesString }) => {
     console.log(solutionNamesString)
 
-    //await runWorkflow(solutionNamesString)
+    await runWorkflow(solutionNamesString)
 
     console.log('end')
 

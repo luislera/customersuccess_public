@@ -55,7 +55,7 @@ jobs:
               commit_message = '${{ github.event.inputs.commit_message }}'
           }
 
-          Run-Workflow @params
+          await Run-Workflow @params
 
   sync-unmanaged-solution:
     runs-on: ubuntu-latest

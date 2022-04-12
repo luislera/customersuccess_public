@@ -9,7 +9,7 @@ module.exports = async ({ github, context, solutionNamesString }) => {
         await github.rest.actions.createWorkflowDispatch({
             owner: context.repo.owner,
             repo: context.repo.repo,
-            workflow_id: 'export-unpack-commit-solution.yml',
+            workflow_id: 'export-unpack-commit-solution',
             ref: 'refs/heads/main',
             inputs: {
               solution_name: solutionName,

@@ -48,4 +48,4 @@ jobs:
             const runWorkflow = require('${{ env.workflow_scripts_path }}/pwsh/test-run2.ps1')
             const solutionNamesString = '${{ github.event.inputs.solution_name }}'
             const ref = '${{ github.ref }}'
-            await runWorkflow({ github, context, solutionNamesString, ref })
+            

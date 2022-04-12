@@ -1,15 +1,17 @@
 module.exports = async ({ github, context, solutionNamesString }) => {
     console.log(solutionNamesString)
 
-    await runWorkflow(solutionNamesString)
+    //await runWorkflow(solutionNamesString)
 
     console.log('end')
 
     async function runWorkflow(solutionName) {
+        console.log('init runWorkflow')
+
         await github.rest.actions.createWorkflowDispatch({
             owner: context.repo.owner,
             repo: context.repo.repo,
-            workflow_id: 'export-unpack-commit-solution',
+            workflow_id: 'export-unpack-commit-solution.yml',
             ref: 'refs/heads/main',
             inputs: {
               solution_name: solutionName,

@@ -22,8 +22,8 @@ function Wait-Workflow-Execution ($workflow_name) {
         $firstLine = ($cmdOutput -split '\n')[5]
         echo "workflow line: $firstLine"
         $colArray = $firstLine -split '	'
-        $status = colArray[0]
-        $success = colArray[1]
+        $status = $colArray[0]
+        $success = $colArray[1]
         echo "$workflow_name status: $status - sucess: $success" 
         Start-Sleep -Seconds 15
     } While ($status -ne "completed")

@@ -1,5 +1,11 @@
 name: trigger-determine-solution
 on:
+  workflow_dispatch:
+    inputs:
+      solution_name:
+        description: "name of the Solution in Dataverse environment"
+        required: true
+        default: MicaSolution
   pull_request:
     branches:
       - main

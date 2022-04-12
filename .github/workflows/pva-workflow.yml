@@ -26,7 +26,6 @@ env:
 jobs:
   export-unpack-commit-solution:
     runs-on: ubuntu-latest
-    using: "composite"
     steps:
       - uses: actions/checkout@v2
       - name: Any Name Bash Test Step
@@ -37,6 +36,26 @@ jobs:
           echo "source_branch: ${{ github.event.inputs.source_branch }}"
           echo "branch_to_create: ${{ github.event.inputs.branch_to_create }}"
           echo "commit_message: ${{ github.event.inputs.commit_message }}"
+        
+      - name: test
+        id: test
+        uses: actions/github-script@v5
+        env:
+          CONTEXT_TO_USE: build-deploy-${{ github.event.inputs.solution_name }}
+          TARGET_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        with:
+          script: |
+            console.log(process.env.CONTEXT_TO_USE)
+            console.log(process.env.TARGET_URL)
+
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'export-unpack-commit-solution.yaml',
+              ref: '${{ github.ref }}'
+            })
+
+            console.log('end')
 
       - name: export-unpack-commit-solution
         id: export-unpack-commit-solution

@@ -26,6 +26,7 @@ env:
 jobs:
   export-unpack-commit-solution:
     runs-on: ubuntu-latest
+    using: "composite"
     steps:
       - uses: actions/checkout@v2
       - name: Any Name Bash Test Step
@@ -55,7 +56,7 @@ jobs:
               commit_message = '${{ github.event.inputs.commit_message }}'
           }
 
-          await Run-Workflow @params
+          Run-Workflow @params
 
   sync-unmanaged-solution:
     runs-on: ubuntu-latest

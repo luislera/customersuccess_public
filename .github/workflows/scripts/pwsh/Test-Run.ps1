@@ -21,8 +21,10 @@ function Wait-Workflow-Execution ($workflow_name) {
         $cmdOutput = gh workflow view $workflow_name | Out-String
         $firstLine = ($cmdOutput -split '\n')[5]
         echo "workflow line: $firstLine"
-        $status = ($firstLine -split '	')[0]
-        echo "$workflow_name status: $status" 
+        $colArray = $firstLine -split '	'
+        $status = colArray[0]
+        $success = colArray[1]
+        echo "$workflow_name status: $status - sucess: $success" 
         Start-Sleep -Seconds 15
     } While ($status -ne "completed")
 }

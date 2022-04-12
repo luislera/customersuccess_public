@@ -5,6 +5,7 @@ function Run-Workflow ($githubRef, $solution_name, $environment_url, $source_bra
     #Start-Sleep -Seconds 5
     $cmdOutput = gh workflow view export-unpack-commit-solution | Out-String
     $line = ($cmdOutput -split '\n')[5]
-    echo "workflow status : $line" 
+    $status = ($line -split '	')[0]
+    echo "workflow status : $status" 
     echo "end Run-Workflow"
 }

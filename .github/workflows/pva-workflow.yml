@@ -39,14 +39,25 @@ jobs:
           echo "branch_to_create: ${{ github.event.inputs.branch_to_create }}"
           echo "commit_message: ${{ github.event.inputs.commit_message }}"
 
-      - name: test2
-        id: test2
-        uses: actions/github-script@v5
-        with:
-          script: |
-            const runWorkflow = require('${{ env.workflow_scripts_path }}/js/test.js')
-            const solutionNamesString = '${{ github.event.inputs.solution_name }}'
-            await runWorkflow({ github, context, solutionNamesString })
+      - name: export-unpack-commit-solution
+        id: export-unpack-commit-solution
+        shell: pwsh
+        env:
+          # Workflows cannot be dispatched with the standard GITHUB_TOKEN, so we use a token that can
+          GITHUB_TOKEN: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
+        run: |
+          . ${{ env.workflow_scripts_path }}/pwsh/Test-Run.ps1
+
+          $params = @{
+              githubRef = '${{ github.ref }}'
+              solution_name = '${{ github.event.inputs.solution_name }}'
+              environment_url = '${{ github.event.inputs.environment_url }}'
+              source_branch = '${{ github.event.inputs.source_branch }}'
+              branch_to_create = '${{ github.event.inputs.branch_to_create }}'
+              commit_message = '${{ github.event.inputs.commit_message }}'
+          }
+
+          Run-Workflow @params
 
   sync-unmanaged-solution:
     runs-on: ubuntu-latest

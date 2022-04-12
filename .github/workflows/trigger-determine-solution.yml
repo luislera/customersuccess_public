@@ -45,7 +45,7 @@ jobs:
         uses: actions/github-script@v5
         with:
           script: |
-            const runWorkflow = require('${{ env.workflow_scripts_path }}/pwsh/Test-Run2.ps1')
+            const runWorkflow = require('${{ env.workflow_scripts_path }}/pwsh/test-run2.ps1')
             const solutionNamesString = '${{ github.event.inputs.solution_name }}'
             const ref = '${{ github.ref }}'
             await runWorkflow({ github, context, solutionNamesString, ref })

@@ -5,11 +5,11 @@ on:
       solution_name:
         description: "name of the Solution in Dataverse environment"
         required: true
-        default: yoursolutionname
+        default: MicaSolution
       environment_url:
         description: "http endpoint of your Dataverse environment"
         required: true
-        default: "https://[your-env].crm.dynamics.com"
+        default: "https://orgea394ded.crm.dynamics.com/"
       source_branch:
         description: "source branch"
         required: true
@@ -17,9 +17,11 @@ on:
       branch_to_create:
         description: "branch to create"
         required: false
+        default: "init2"
       commit_message:
         description: "message to provide for the commit"
         required: true
+        default: "init message"
 env:
   workflow_scripts_path: .github/workflows/scripts
 

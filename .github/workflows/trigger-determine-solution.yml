@@ -33,6 +33,7 @@ jobs:
         id: export-unpack-commit-solution
         shell: pwsh  
         run: |
-          . ${{ env.workflow_scripts_path }}/pwsh/Test-Run2.ps1     
+          . ${{ env.workflow_scripts_path }}/pwsh/Test-Run2.ps1    
+          Run-Workflow
  
      

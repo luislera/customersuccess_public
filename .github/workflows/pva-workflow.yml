@@ -31,9 +31,11 @@ jobs:
       - name: Any Name Bash Test Step
         shell: bash
         run: |
-          echo "branch_to_create: ${{ env.branch_to_create }}"
-          echo "solution_package_source: ${{ env.solution_package_source }}"
-          echo "solution_export_folder: ${{ env.solution_export_folder }}"
+          echo "solution_name: ${{ github.event.inputs.solution_name }}"
+          echo "environment_url: ${{ github.event.inputs.environment_url }}"
+          echo "source_branch: ${{ github.event.inputs.source_branch }}"
+          echo "branch_to_create: ${{ github.event.inputs.branch_to_create }}"
+          echo "commit_message: ${{ github.event.inputs.commit_message }}"
 
       - name: export-unpack-commit-solution
         id: export-unpack-commit-solution
@@ -46,7 +48,7 @@ jobs:
 
           $params = @{
               githubRef = '${{ github.ref }}'
-              solutionName = '${{ github.event.inputs.solutionName }}'
+              solution_name = '${{ github.event.inputs.solution_name }}'
               environment_url = '${{ github.event.inputs.environment_url }}'
               source_branch = '${{ github.event.inputs.source_branch }}'
               branch_to_create = '${{ github.event.inputs.branch_to_create }}'

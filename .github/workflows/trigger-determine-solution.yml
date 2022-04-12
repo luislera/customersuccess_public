@@ -23,7 +23,7 @@ on:
         required: true
         default: "init message"
 env:
-  workflow_scripts_path: .github/workflows/scripts
+  workflow_scripts_path: ./.github/workflows/scripts
 
 jobs:
   trigger-determine-solution:

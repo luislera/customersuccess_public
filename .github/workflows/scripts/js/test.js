@@ -1,7 +1,9 @@
 module.exports = async ({ github, context, solutionNamesString }) => {
     console.log(solutionNamesString)
 
-    await runWorkflow(solutionNamesString)
+    let solutionNamesArray = solutionNamesString.split(",")
+
+    await solutionNamesArray.forEach(runWorkflow)
 
     console.log('end')
 

@@ -1,0 +1,17 @@
+name: another-pva-workflow
+on:
+  workflow_run:
+    workflows: ["pva-workflow"]
+    types:
+      - completed
+
+jobs:
+  another-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Any Name Bash Test Step
+        shell: bash
+        run: |
+          echo "branch_to_create: ${{ env.branch_to_create }}"
+          echo "solution_package_source: ${{ env.solution_package_source }}"
+          echo "solution_export_folder: ${{ env.solution_export_folder }}"

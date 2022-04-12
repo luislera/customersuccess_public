@@ -6,30 +6,83 @@ on:
         description: "name of the Solution in Dataverse environment"
         required: true
         default: MicaSolution
-  pull_request:
-    branches:
-      - main
-    paths:
-      - src/**
-  push:
-    branches:
-      - main
-    paths:
-      - src/**
-  
-        
+      environment_url:
+        description: "http endpoint of your Dataverse environment"
+        required: true
+        default: "https://orgea394ded.crm.dynamics.com/"
+      source_branch:
+        description: "source branch"
+        required: true
+        default: main
+      branch_to_create:
+        description: "branch to create"
+        required: false
+        default: "init2"
+      commit_message:
+        description: "message to provide for the commit"
+        required: true
+        default: "init message"
 env:
   workflow_scripts_path: .github/workflows/scripts
 
-
 jobs:
- build:
+  export-unpack-commit-solution:
     runs-on: ubuntu-latest
     steps:
-    - name: test2
-      uses: actions/github-script@v5
-      with:
-        script: |
-            const runWorkflow = require('${{ env.workflow_scripts_path }}/js/test2.js')
-            await runWorkflow({ github, context })
+      - uses: actions/checkout@v2
+      - name: Any Name Bash Test Step
+        shell: bash
+        run: |
+          echo "solution_name: ${{ github.event.inputs.solution_name }}"
+          echo "environment_url: ${{ github.event.inputs.environment_url }}"
+          echo "source_branch: ${{ github.event.inputs.source_branch }}"
+          echo "branch_to_create: ${{ github.event.inputs.branch_to_create }}"
+          echo "commit_message: ${{ github.event.inputs.commit_message }}"
+      - name: export-unpack-commit-solution
+        id: export-unpack-commit-solution
+        shell: pwsh
+        env:
+          # Workflows cannot be dispatched with the standard GITHUB_TOKEN, so we use a token that can
+          GITHUB_TOKEN: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
+        run: |
+          . ${{ env.workflow_scripts_path }}/pwsh/Test-Run.ps1
+          $params = @{
+              githubRef = '${{ github.ref }}'
+              solution_name = '${{ github.event.inputs.solution_name }}'
+              environment_url = '${{ github.event.inputs.environment_url }}'
+              source_branch = '${{ github.event.inputs.source_branch }}'
+              branch_to_create = '${{ github.event.inputs.branch_to_create }}'
+              commit_message = '${{ github.event.inputs.commit_message }}'
+          }
+          Run-Workflow @params
+  sync-unmanaged-solution:
+    runs-on: ubuntu-latest
+    needs: export-unpack-commit-solution
+    steps:
+      - name: Any Name Bash Test Step
+        shell: bash
+        run: |
+          echo "branch_to_create: ${{ env.branch_to_create }}"
+          echo "solution_package_source: ${{ env.solution_package_source }}"
+          echo "solution_export_folder: ${{ env.solution_export_folder }}"
+  delete-and-import-unmanaged-solution:
+    runs-on: ubuntu-latest
+    needs: sync-unmanaged-solution
+    steps:
+      - name: Any Name Bash Test Step
+        shell: bash
+        run: |
+          echo "branch_to_create: ${{ env.branch_to_create }}"
+          echo "solution_package_source: ${{ env.solution_package_source }}"
+          echo "solution_export_folder: ${{ env.solution_export_folder }}"
+  create-pr-with-solution:
+    runs-on: ubuntu-latest
+    needs: delete-and-import-unmanaged-solution
+    steps:
+      - name: Any Name Bash Test Step
+        shell: bash
+        run: |
+          echo "branch_to_create: ${{ env.branch_to_create }}"
+          echo "solution_package_source: ${{ env.solution_package_source }}"
+          echo "solution_export_folder: ${{ env.solution_export_folder }}"
      

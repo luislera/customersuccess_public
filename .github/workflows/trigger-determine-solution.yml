@@ -1,0 +1,17 @@
+name: CI
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]  
+env:
+  workflow_scripts_path: .github/workflows/scripts
+
+
+jobs:
+ determine-solution-build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Any Name Bash Test Step
+        shell: bash
+      

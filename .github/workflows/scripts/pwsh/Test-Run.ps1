@@ -10,7 +10,7 @@ function Sync-Unmanaged ($githubRef, $workflow_name, $from_branch, $to_branch) {
 }
 
 function Delete-Import-Unmanaged ($workflow_name, $solution_name, $environment_url, $githubRef) {
-    gh workflow run $workflow_name --ref $githubRef -f solution_name=$solution_name -f environment_url=$environment_url
+    gh workflow run $workflow_name --ref $githubRef -f solution_name=$solution_name -f environment_url=$environment_url -f ref=$githubRef
 
     Wait-Workflow-Execution $workflow_name
 }
@@ -20,6 +20,7 @@ function Wait-Workflow-Execution ($workflow_name) {
     {
         $cmdOutput = gh workflow view $workflow_name | Out-String
         $firstLine = ($cmdOutput -split '\n')[5]
+        echo "workflow line: $firstLine"
         $status = ($firstLine -split '	')[0]
         echo "$workflow_name status: $status" 
         Start-Sleep -Seconds 15

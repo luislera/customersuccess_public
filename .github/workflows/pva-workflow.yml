@@ -1,6 +1,25 @@
 name: pva-workflow
 on:
   workflow_dispatch:
+    inputs:
+      solution_name:
+        description: "name of the Solution in Dataverse environment"
+        required: true
+        default: yoursolutionname
+      environment_url:
+        description: "http endpoint of your Dataverse environment"
+        required: true
+        default: "https://[your-env].crm.dynamics.com"
+      source_branch:
+        description: "source branch"
+        required: true
+        default: main
+      branch_to_create:
+        description: "branch to create"
+        required: false
+      commit_message:
+        description: "message to provide for the commit"
+        required: true
 
 jobs:
   export-unpack-commit-solution:
@@ -12,6 +31,26 @@ jobs:
           echo "branch_to_create: ${{ env.branch_to_create }}"
           echo "solution_package_source: ${{ env.solution_package_source }}"
           echo "solution_export_folder: ${{ env.solution_export_folder }}"
+
+      - name: export-unpack-commit-solution
+        id: export-unpack-commit-solution
+        shell: pwsh
+        env:
+          # Workflows cannot be dispatched with the standard GITHUB_TOKEN, so we use a token that can
+          GITHUB_TOKEN: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
+        run: |
+          . ${{ env.workflow_scripts_path }}/pwsh/Test-Run.ps1
+
+          $params = @{
+              githubRef = '${{ github.ref }}'
+              solutionName = '${{ github.event.inputs.solutionName }}'
+              environment_url = '${{ github.event.inputs.environment_url }}'
+              source_branch = '${{ github.event.inputs.source_branch }}'
+              branch_to_create = '${{ github.event.inputs.branch_to_create }}'
+              commit_message = '${{ github.event.inputs.commit_message }}'
+          }
+
+          Run-Workflow @params
 
   sync-unmanaged-solution:
     runs-on: ubuntu-latest

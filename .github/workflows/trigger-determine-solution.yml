@@ -1,27 +1,15 @@
 name: trigger-determine-solution
 on:
-  workflow_dispatch:
-    inputs:
-      solution_name:
-        description: "name of the Solution in Dataverse environment"
-        required: true
-        default: MicaSolution
-      environment_url:
-        description: "http endpoint of your Dataverse environment"
-        required: true
-        default: "https://orgea394ded.crm.dynamics.com/"
-      source_branch:
-        description: "source branch"
-        required: true
-        default: main
-      branch_to_create:
-        description: "branch to create"
-        required: false
-        default: "init2"
-      commit_message:
-        description: "message to provide for the commit"
-        required: true
-        default: "init message"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - src/**
+  push:
+    branches:
+      - main
+    paths:
+      - src/**
 env:
   workflow_scripts_path: .github/workflows/scripts
 

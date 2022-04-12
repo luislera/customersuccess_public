@@ -26,8 +26,10 @@ jobs:
  determine-solution-build-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: test2
-        id: test2
-        run: |
-          . ${{ env.workflow_scripts_path }}/pwsh/Test-Run2.ps1
+    - name: test2
+      uses: actions/github-script@v5
+      with:
+        script: |
+            const runWorkflow = require('${{ env.workflow_scripts_path }}/js/test2.js')
+            await runWorkflow({ github, context })
      

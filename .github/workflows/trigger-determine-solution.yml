@@ -37,10 +37,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         run: |
           . ${{ env.workflow_scripts_path }}/pwsh/Test-Job.ps1    
-           $params = @{
+          
+          $params = @{
               githubRef = '${{ github.ref }}'
               solution_name = '${{ github.event.inputs.solution_name }}'
           }
-          Run-Workflow @params
- 
-     
+
+          Run-Workflow @params  

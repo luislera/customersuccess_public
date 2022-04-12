@@ -1,3 +1,3 @@
-function Run-Workflow ($githubRef, $solution_name, $environment_url, $source_branch, $branch_to_create, $commit_message) {
+function Run-Workflow () {
     gh workflow run determine-solution-build-deploy
 }

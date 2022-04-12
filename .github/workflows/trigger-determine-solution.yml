@@ -23,7 +23,7 @@ env:
 
 
 jobs:
- determine-solution-build-deploy:
+ build:
     runs-on: ubuntu-latest
     steps:
     - name: test2

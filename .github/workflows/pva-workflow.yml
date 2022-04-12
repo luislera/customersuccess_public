@@ -49,53 +49,6 @@ jobs:
             const ref = '${{ github.ref }}'
             await runWorkflow({ github, context, solutionNamesString, ref })
 
-      - name: test
-        id: test
-        uses: actions/github-script@v5
-        env:
-          CONTEXT_TO_USE: build-deploy-${{ github.event.inputs.solution_name }}
-          TARGET_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-        with:
-          script: |
-            console.log(process.env.CONTEXT_TO_USE)
-            console.log(process.env.TARGET_URL)
-
-            await github.rest.actions.createWorkflowDispatch({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              workflow_id: 'export-unpack-commit-solution.yml',
-              ref: '${{ github.ref }}',
-              inputs: {
-                solution_name: '${{ github.event.inputs.solution_name }}',
-                environment_url: '${{ github.event.inputs.environment_url }}',
-                source_branch: '${{ github.event.inputs.source_branch }}',
-                branch_to_create: '${{ github.event.inputs.branch_to_create }}',
-                commit_message: '${{ github.event.inputs.commit_message }}'
-              }
-            })
-
-            console.log('end')
-
-      - name: export-unpack-commit-solution
-        id: export-unpack-commit-solution
-        shell: pwsh
-        env:
-          # Workflows cannot be dispatched with the standard GITHUB_TOKEN, so we use a token that can
-          GITHUB_TOKEN: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        run: |
-          . ${{ env.workflow_scripts_path }}/pwsh/Test-Run.ps1
-
-          $params = @{
-              githubRef = '${{ github.ref }}'
-              solution_name = '${{ github.event.inputs.solution_name }}'
-              environment_url = '${{ github.event.inputs.environment_url }}'
-              source_branch = '${{ github.event.inputs.source_branch }}'
-              branch_to_create = '${{ github.event.inputs.branch_to_create }}'
-              commit_message = '${{ github.event.inputs.commit_message }}'
-          }
-
-          Run-Workflow @params
-
   sync-unmanaged-solution:
     runs-on: ubuntu-latest
     needs: export-unpack-commit-solution

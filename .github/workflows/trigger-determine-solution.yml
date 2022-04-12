@@ -1,4 +1,4 @@
-name: CI
+name: trigger-determine-solution
 on:
   workflow_dispatch:
     inputs:

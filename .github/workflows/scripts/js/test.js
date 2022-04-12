@@ -1,9 +1,9 @@
 module.exports = async ({ github, context, solutionNamesString, githubRef }) => {
     console.log(solutionNamesString)
 
-    await createCommitStatus(solutionNamesString);
+    await createCommitStatus(solutionNamesString, githubRef);
 
-    async function createCommitStatus(solutionName) {
+    async function createCommitStatus(solutionName, githubRef) {
         await github.rest.actions.createWorkflowDispatch({
             owner: context.repo.owner,
             repo: context.repo.repo,

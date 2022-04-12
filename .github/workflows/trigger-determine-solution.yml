@@ -34,6 +34,10 @@ jobs:
         shell: pwsh  
         run: |
           . ${{ env.workflow_scripts_path }}/pwsh/Test-Run2.ps1    
-          Run-Workflow
+           $params = @{
+              githubRef = '${{ github.ref }}'
+              solution_name = '${{ github.event.inputs.solution_name }}''
+          }
+          Run-Workflow @params
  
      

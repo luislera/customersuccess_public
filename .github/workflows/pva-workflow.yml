@@ -20,6 +20,8 @@ on:
       commit_message:
         description: "message to provide for the commit"
         required: true
+env:
+  workflow_scripts_path: .github/workflows/scripts
 
 jobs:
   export-unpack-commit-solution:

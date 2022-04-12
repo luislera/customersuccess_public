@@ -33,7 +33,7 @@ jobs:
         id:  determine-solution-build-deploy
         shell: pwsh  
         run: |
-          . ${{ env.workflow_scripts_path }}/pwsh/Test-Run2.ps1    
+          . ${{ env.workflow_scripts_path }}/pwsh/Test-Run-Determine.ps1    
            $params = @{
               githubRef = '${{ github.ref }}'
               solution_name = '${{ github.event.inputs.solution_name }}'

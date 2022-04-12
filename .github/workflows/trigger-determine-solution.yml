@@ -1,9 +1,28 @@
 name: CI
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]  
+  workflow_dispatch:
+    inputs:
+      solution_name:
+        description: "name of the Solution in Dataverse environment"
+        required: true
+        default: MicaSolution
+      environment_url:
+        description: "http endpoint of your Dataverse environment"
+        required: true
+        default: "https://orgea394ded.crm.dynamics.com/"
+      source_branch:
+        description: "source branch"
+        required: true
+        default: main
+      branch_to_create:
+        description: "branch to create"
+        required: false
+        default: "init2"
+      commit_message:
+        description: "message to provide for the commit"
+        required: true
+        default: "init message"
+        
 env:
   workflow_scripts_path: .github/workflows/scripts
 
@@ -14,4 +33,35 @@ jobs:
     steps:
       - name: Any Name Bash Test Step
         shell: bash
+        run: |
+          echo "solution_name: ${{ github.event.inputs.solution_name }}"
+          echo "environment_url: ${{ github.event.inputs.environment_url }}"
+          echo "source_branch: ${{ github.event.inputs.source_branch }}"
+          echo "branch_to_create: ${{ github.event.inputs.branch_to_create }}"
+          echo "commit_message: ${{ github.event.inputs.commit_message }}"
+        
+      - name: test
+        id: test
+        uses: actions/github-script@v5
+        env:
+          CONTEXT_TO_USE: build-deploy-${{ github.event.inputs.solution_name }}
+          TARGET_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        with:
+          script: |
+            console.log(process.env.CONTEXT_TO_USE)
+            console.log(process.env.TARGET_URL)
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'export-unpack-commit-solution.yml',
+              ref: '${{ github.ref }}',
+              inputs: {
+                solution_name: '${{ github.event.inputs.solution_name }}',
+                environment_url: '${{ github.event.inputs.environment_url }}',
+                source_branch: '${{ github.event.inputs.source_branch }}',
+                branch_to_create: '${{ github.event.inputs.branch_to_create }}',
+                commit_message: '${{ github.event.inputs.commit_message }}'
+              }
+            })
+            console.log('end')
       

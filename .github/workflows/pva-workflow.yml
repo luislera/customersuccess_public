@@ -55,6 +55,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: export-unpack-commit-solution
     steps:
+      - uses: actions/checkout@v2    
       - name: sync-unmanaged-solution
         id: sync-unmanaged-solution
         shell: pwsh

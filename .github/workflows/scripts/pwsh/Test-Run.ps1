@@ -9,7 +9,7 @@ function Sync-Unmanaged ($githubRef, $workflow_name, $from_branch, $to_branch) {
     Wait-Workflow-Execution $workflow_name
 }
 
-function Delete-Import-Unmanaged ($workflow_name, $solution_name, $environment_url, $githubRef,) {
+function Delete-Import-Unmanaged ($workflow_name, $solution_name, $environment_url, $githubRef) {
     gh workflow run $workflow_name --ref $githubRef -f solution_name=$solution_name -f environment_url=$environment_url
 
     Wait-Workflow-Execution $workflow_name

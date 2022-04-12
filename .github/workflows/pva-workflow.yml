@@ -30,15 +30,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Any Name Bash Test Step
-        shell: bash
-        run: |
-          echo "solution_name: ${{ github.event.inputs.solution_name }}"
-          echo "environment_url: ${{ github.event.inputs.environment_url }}"
-          echo "source_branch: ${{ github.event.inputs.source_branch }}"
-          echo "branch_to_create: ${{ github.event.inputs.branch_to_create }}"
-          echo "commit_message: ${{ github.event.inputs.commit_message }}"
-
       - name: export-unpack-commit-solution
         id: export-unpack-commit-solution
         shell: pwsh
@@ -50,6 +41,7 @@ jobs:
 
           $params = @{
               githubRef = '${{ github.ref }}'
+              workflow_name = 'export-unpack-commit-solution'
               solution_name = '${{ github.event.inputs.solution_name }}'
               environment_url = '${{ github.event.inputs.environment_url }}'
               source_branch = '${{ github.event.inputs.source_branch }}'
@@ -57,18 +49,29 @@ jobs:
               commit_message = '${{ github.event.inputs.commit_message }}'
           }
 
-          Run-Workflow @params
+          Export-Unpack-Commit @params
 
   sync-unmanaged-solution:
     runs-on: ubuntu-latest
     needs: export-unpack-commit-solution
     steps:
-      - name: Any Name Bash Test Step
-        shell: bash
+      - name: sync-unmanaged-solution
+        id: sync-unmanaged-solution
+        shell: pwsh
+        env:
+          # Workflows cannot be dispatched with the standard GITHUB_TOKEN, so we use a token that can
+          GITHUB_TOKEN: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         run: |
-          echo "branch_to_create: ${{ env.branch_to_create }}"
-          echo "solution_package_source: ${{ env.solution_package_source }}"
-          echo "solution_export_folder: ${{ env.solution_export_folder }}"
+          . ${{ env.workflow_scripts_path }}/pwsh/Test-Run.ps1
+
+          $params = @{
+              githubRef = '${{ github.ref }}'
+              workflow_name = 'sync-unmanaged-solution'
+              from_branch = '${{ github.event.inputs.source_branch }}'
+              to_branch = '${{ github.event.inputs.branch_to_create }}'
+          }
+
+          Sync-Unmanaged @params
 
   delete-and-import-unmanaged-solution:
     runs-on: ubuntu-latest

@@ -76,7 +76,7 @@ jobs:
 
   delete-and-import-unmanaged-solution:
     runs-on: ubuntu-latest
-    needs: export-unpack-commit-solution
+    needs: sync-unmanaged-solution
     steps:
       - uses: actions/checkout@v2    
       - name: delete-and-import-unmanaged-solution

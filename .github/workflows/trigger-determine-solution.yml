@@ -1,27 +1,16 @@
 name: trigger-determine-solution
 on:
-  workflow_dispatch:
-    inputs:
-      solution_name:
-        description: "name of the Solution in Dataverse environment"
-        required: true
-        default: MicaSolution
-      environment_url:
-        description: "http endpoint of your Dataverse environment"
-        required: true
-        default: "https://orgea394ded.crm.dynamics.com/"
-      source_branch:
-        description: "source branch"
-        required: true
-        default: main
-      branch_to_create:
-        description: "branch to create"
-        required: false
-        default: "init2"
-      commit_message:
-        description: "message to provide for the commit"
-        required: true
-        default: "init message"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - src/**
+  push:
+    branches:
+      - main
+    paths:
+      - src/**
+  
         
 env:
   workflow_scripts_path: .github/workflows/scripts
@@ -31,25 +20,8 @@ jobs:
  determine-solution-build-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Any Name Bash Test Step
-        shell: bash
-        run: |
-          echo "solution_name: ${{ github.event.inputs.solution_name }}"
-          echo "environment_url: ${{ github.event.inputs.environment_url }}"
-          echo "source_branch: ${{ github.event.inputs.source_branch }}"
-          echo "branch_to_create: ${{ github.event.inputs.branch_to_create }}"
-          echo "commit_message: ${{ github.event.inputs.commit_message }}"
-        
       - name: test2
         id: test2
         run: |
           . ${{ env.workflow_scripts_path }}/pwsh/Test-Run2.ps1
-          $params = @{
-              githubRef = '${{ github.ref }}'
-              solution_name = '${{ github.event.inputs.solution_name }}'
-              environment_url = '${{ github.event.inputs.environment_url }}'
-              source_branch = '${{ github.event.inputs.source_branch }}'
-              branch_to_create = '${{ github.event.inputs.branch_to_create }}'
-              commit_message = '${{ github.event.inputs.commit_message }}'
-          }
-          Run-Workflow @params
+     

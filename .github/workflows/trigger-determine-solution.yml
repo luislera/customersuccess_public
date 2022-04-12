@@ -29,8 +29,8 @@ jobs:
   trigger-determine-solution:
     runs-on: ubuntu-latest
     steps:
-      - name: export-unpack-commit-solution
-        id: export-unpack-commit-solution
+      - name: determine-solution-build-deploy
+        id:  determine-solution-build-deploy
         shell: pwsh  
         run: |
           . ${{ env.workflow_scripts_path }}/pwsh/Test-Run2.ps1    

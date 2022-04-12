@@ -46,11 +46,15 @@ jobs:
           # Workflows cannot be dispatched with the standard GITHUB_TOKEN, so we use a token that can
           GITHUB_TOKEN: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         run: |
-          . ${{ env.workflow_scripts_path }}/pwsh/Test-Run-Determine.ps1
+          . ${{ env.workflow_scripts_path }}/pwsh/Test-Run.ps1
 
           $params = @{
               githubRef = '${{ github.ref }}'
               solution_name = '${{ github.event.inputs.solution_name }}'
+              environment_url = '${{ github.event.inputs.environment_url }}'
+              source_branch = '${{ github.event.inputs.source_branch }}'
+              branch_to_create = '${{ github.event.inputs.branch_to_create }}'
+              commit_message = '${{ github.event.inputs.commit_message }}'
           }
 
           Run-Workflow @params

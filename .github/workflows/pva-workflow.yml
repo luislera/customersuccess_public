@@ -41,13 +41,13 @@ jobs:
             await github.rest.actions.createWorkflowDispatch({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              workflow_id: 'export-unpack-commit-solution',
+              workflow_id: 'export-unpack-commit-solution.yml',
               ref: '${{ github.ref }}',
               inputs: {
-                solution_name: '${{ github.event.inputs.solution_name }}'
-                environment_url: '${{ github.event.inputs.environment_url }}'
-                source_branch: '${{ github.event.inputs.source_branch }}'
-                branch_to_create: '${{ github.event.inputs.branch_to_create }}'
+                solution_name: '${{ github.event.inputs.solution_name }}',
+                environment_url: '${{ github.event.inputs.environment_url }}',
+                source_branch: '${{ github.event.inputs.source_branch }}',
+                branch_to_create: '${{ github.event.inputs.branch_to_create }}',
                 commit_message: '${{ github.event.inputs.commit_message }}'
               }
             })

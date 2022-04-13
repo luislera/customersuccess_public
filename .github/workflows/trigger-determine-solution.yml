@@ -37,7 +37,7 @@ jobs:
         uses: actions/github-script@v5
         with:
           script: |
-            let sleep = require('${{ env.workflow_scripts_path }}/js/test2.js')
+            let sleep = require('${{ env.workflow_scripts_path }}/js/test.js')
             let currentStatus = null;
             sleep(2000)
             do {

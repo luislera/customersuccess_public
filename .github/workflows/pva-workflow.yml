@@ -74,5 +74,6 @@ jobs:
                 break
               }
 
-              console.log(currentStatus);
+              console.log(currentStatus)
+              sleep(10000)
             } while (currentStatus != 'completed');

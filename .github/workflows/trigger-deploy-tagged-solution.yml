@@ -28,7 +28,7 @@ jobs:
           
           $params = @{
               githubRef = '${{ github.ref }}'
-              githubTag = '1.0.0'
+              tag = '1.0.0'
               environment = '${{ env.environment }}'
           }
           Run-Workflow @params  

@@ -28,6 +28,7 @@ jobs:
           
           $params = @{
               githubRef = '${{ github.ref }}'
-              solution_name = '${{ github.event.inputs.solution_name }}'
+              githubTag = '1.0.0'
+              environment = '${{ env.environment }}'
           }
           Run-Workflow @params  

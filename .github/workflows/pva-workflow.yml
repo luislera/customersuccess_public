@@ -70,7 +70,7 @@ jobs:
 
             console.log('init')
             const sleep = require('${{ env.workflow_scripts_path }}/js/test.js')
-            sleep(3000)
+            sleep({ 3000 })
             console.log('end')
             console.log(test.data.total_count)
             if (test.data.total_count != 0) {

@@ -68,6 +68,10 @@ jobs:
               per_page: 1
             })
 
+            console.log('init')
+            let sleep = require('${{ env.workflow_scripts_path }}/js/test.js')
+            sleep({ 3000 })
+            console.log('end')
             console.log(test.data.total_count)
             if (test.data.total_count != 0) {
               let time = Date.now()

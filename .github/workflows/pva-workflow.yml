@@ -39,7 +39,7 @@ jobs:
             await github.rest.actions.createWorkflowDispatch({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              workflow_id: 'export-unpack-commit-solution',
+              workflow_id: 'export-unpack-commit-solution.yml',
               ref: '${{ github.ref }}',
               inputs: {
                 solution_name: '${{ github.event.inputs.solution_name }}',

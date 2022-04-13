@@ -58,7 +58,8 @@ jobs:
           script: |
             let sleep = require('${{ env.workflow_scripts_path }}/js/test.js')
             let currentStatus = null;
-            
+            sleep(2000)
+
             do {
               let workflowLog = await github.rest.actions.listWorkflowRuns({
                 owner: context.repo.owner,

@@ -1,4 +1,4 @@
-function Run-Workflow ($githubRef, $environment, $tag) {
+function Run-Workflow ($githubRef) {
     echo "init Run-Workflow"
     gh workflow run deploy-tagged-solution-to-environment --ref $githubRef
     echo "sleep for 5 seconds"

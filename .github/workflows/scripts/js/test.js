@@ -1,9 +1,7 @@
-module.exports = () => {
-    sleep(3000);
+module.exports = (milliseconds) => {
+    sleep(milliseconds);
 
     function sleep(milliseconds) {
-      console.log(milliseconds)
-      console.log('sleep')
       const date = Date.now();
       let currentDate = null;
       do {

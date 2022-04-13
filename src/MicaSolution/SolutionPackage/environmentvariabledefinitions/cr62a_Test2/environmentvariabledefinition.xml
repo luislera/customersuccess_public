@@ -1,0 +1,11 @@
+<environmentvariabledefinition schemaname="cr62a_Test2">
+  <defaultvalue>default value</defaultvalue>
+  <displayname default="Test2">
+    <label description="Test2" languagecode="1033" />
+  </displayname>
+  <introducedversion>1.0.0.2</introducedversion>
+  <iscustomizable>1</iscustomizable>
+  <isrequired>0</isrequired>
+  <secretstore>0</secretstore>
+  <type>100000000</type>
+</environmentvariabledefinition>

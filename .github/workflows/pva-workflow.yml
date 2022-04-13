@@ -31,25 +31,25 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: exec-export-unpack-commit-solution-workflow
-        id: exec-export-unpack-commit-solution-workflow
-        uses: actions/github-script@v5
-        with:
-          github-token: ${{secrets.WORKFLOW_DISPATCH_TOKEN}}
-          script: |
-            await github.rest.actions.createWorkflowDispatch({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              workflow_id: 'export-unpack-commit-solution.yml',
-              ref: '${{ github.ref }}',
-              inputs: {
-                solution_name: '${{ github.event.inputs.solution_name }}',
-                environment_url: '${{ github.event.inputs.environment_url }}',
-                source_branch: '${{ github.event.inputs.source_branch }}',
-                branch_to_create: '${{ github.event.inputs.branch_to_create }}',
-                commit_message: '${{ github.event.inputs.commit_message }}'
-              }
-            })
+      #- name: exec-export-unpack-commit-solution-workflow
+      #  id: exec-export-unpack-commit-solution-workflow
+      #  uses: actions/github-script@v5
+      #  with:
+      #    github-token: ${{secrets.WORKFLOW_DISPATCH_TOKEN}}
+      #    script: |
+      #      await github.rest.actions.createWorkflowDispatch({
+      #        owner: context.repo.owner,
+      #        repo: context.repo.repo,
+      #        workflow_id: 'export-unpack-commit-solution.yml',
+      #        ref: '${{ github.ref }}',
+      #        inputs: {
+      #          solution_name: '${{ github.event.inputs.solution_name }}',
+      #          environment_url: '${{ github.event.inputs.environment_url }}',
+      #          source_branch: '${{ github.event.inputs.source_branch }}',
+      #          branch_to_create: '${{ github.event.inputs.branch_to_create }}',
+      #          commit_message: '${{ github.event.inputs.commit_message }}'
+      #        }
+      #      })
 
       - name: Sleep for 5 seconds
         uses: jakejarvis/wait-action@master
@@ -69,8 +69,8 @@ jobs:
             })
 
             console.log('init')
-            let sleep = require('${{ env.workflow_scripts_path }}/js/test.js')
-            sleep({ 3000 })
+            const sleep = require('${{ env.workflow_scripts_path }}/js/test.js')
+            sleep(3000)
             console.log('end')
             console.log(test.data.total_count)
             if (test.data.total_count != 0) {

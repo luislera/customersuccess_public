@@ -134,6 +134,7 @@ jobs:
       - name: create-pr-with-solution
         uses: actions/github-script@v5
         with:
+          github-token: ${{ secrets.REPO_TOKEN }}
           script: |
             const { repo, owner } = context.repo;
             const result = await github.rest.pulls.create({

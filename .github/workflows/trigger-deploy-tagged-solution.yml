@@ -30,7 +30,6 @@ jobs:
               workflow_id: 'deploy-tagged-solution-to-environment.yml',
               ref: '${{ github.ref }}',
               inputs: {
-                githubRef: '${{ github.ref }}',
                 tag: '${{ github.event.inputs.tag }}',
                 environment: '${{ github.event.inputs.environment }}'
               }

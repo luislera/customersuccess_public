@@ -1,0 +1,9 @@
+{
+  "EnvironmentVariables": [
+    {
+      "SchemaName": "cr3c5_TestVar",
+      "Value": ""
+    }
+  ],
+  "ConnectionReferences": []
+}

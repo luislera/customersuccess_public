@@ -22,7 +22,7 @@ jobs:
         uses: actions/github-script@v5  
         with:
           # Workflows cannot be dispatched with the standard GITHUB_TOKEN, so we use a token that can
-          GITHUB_TOKEN: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
+          github-token: ${{secrets.WORKFLOW_DISPATCH_TOKEN}}
           script: |
             await github.rest.actions.createWorkflowDispatch({
               owner: context.repo.owner,

@@ -29,6 +29,6 @@ jobs:
           $params = @{
               githubRef = '${{ github.ref }}'
               tag = '${{ github.event.inputs.tag }}'
-              environment = '${{ github.event.inputs.environment }}'
+              environment: '${{ github.event.inputs.environment }}'
           }
           Run-Workflow @params  

@@ -15,10 +15,11 @@ env:
 jobs:
   trigger-deploy-tagged-solution:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2    
+    steps:      
+      - uses: actions/checkout@v2
       - name: deploy-tagged-solution-to-environment
         id:  deploy-tagged-solution-to-environment
+        uses: actions/github-script@v5  
         with:
           # Workflows cannot be dispatched with the standard GITHUB_TOKEN, so we use a token that can
           GITHUB_TOKEN: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}

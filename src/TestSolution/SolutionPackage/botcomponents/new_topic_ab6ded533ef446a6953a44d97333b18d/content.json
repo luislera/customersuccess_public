@@ -1,0 +1,48 @@
+{
+  "intents": [
+    {
+      "triggerQueries": [
+        "new topic"
+      ],
+      "dialogId": "new_topic_ab6ded533ef446a6953a44d97333b18d",
+      "isTriggeringEnabled": true,
+      "id": "new_topic_ab6ded533ef446a6953a44d97333b18d",
+      "displayName": "My topic",
+      "createdTime": "2022-04-14T13:47:16.5790904Z",
+      "updatedTime": "2022-04-14T13:47:16.5790904Z",
+      "createdUserId": "566328ac-2347-4d6f-83be-268a91880fff",
+      "updatedUserId": "566328ac-2347-4d6f-83be-268a91880fff"
+    }
+  ],
+  "dialogs": [
+    {
+      "rootNodeId": "6c5885fd-c26d-49ba-9a6f-99041fddcf56",
+      "messageNodes": [
+        {
+          "botMessageId": "1f95e031-1521-4c5a-81b6-f88ff5007879",
+          "nodeType": "BotMessageNode",
+          "id": "6c5885fd-c26d-49ba-9a6f-99041fddcf56"
+        }
+      ],
+      "id": "new_topic_ab6ded533ef446a6953a44d97333b18d",
+      "displayName": "Sin título",
+      "createdTime": "2022-04-14T13:47:16.5790904Z",
+      "updatedTime": "2022-04-14T13:47:16.5790904Z",
+      "createdUserId": "566328ac-2347-4d6f-83be-268a91880fff",
+      "updatedUserId": "566328ac-2347-4d6f-83be-268a91880fff"
+    }
+  ],
+  "botMessages": [
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "This is a new topic!"
+        }
+      },
+      "id": "1f95e031-1521-4c5a-81b6-f88ff5007879",
+      "createdTime": "2022-04-14T13:46:53.148Z",
+      "updatedTime": "2022-04-14T13:46:53.148Z"
+    }
+  ]
+}

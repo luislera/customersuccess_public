@@ -22,10 +22,21 @@ inputs:
   secrets:
     description: "secrets"
     required: true
+  solution_action:
+    description: "solution_action"
+    required: true
 
 runs:
   using: "composite"
   steps:
+      - name: debug-step
+      shell: bash
+      run: |
+        echo "solution_action ${{ inputs.solution_action }}"
+        echo "secrets ${{ inputs.secrets }}"
+        echo "environment_url ${{ inputs.environment_url }}"
+        echo "environment ${{ inputs.environment }}"
+
     - name: mask-inputs
       shell: bash
       run: |
@@ -71,13 +82,14 @@ runs:
 
     - name: import-solution-to-environment
       uses: microsoft/powerplatform-actions/import-solution@latest
+      #env:
+      #  import-as-holding: "${{ inputs.solution_action == 'update' && 'false' || 'true' }}"
       with:
-        environment-url: ${{ inputs.environment_url }}
         tenant-id: ${{ env.TENANT_ID }}
         app-id: ${{ env.CLIENT_ID }}
         client-secret: ${{ env.CLIENT_SECRET }}
         solution-file: ${{ steps.get-solution-zip.outputs.solution_zip }}
+        import-as-holding: true
         force-overwrite: true
         use-deployment-settings-file: true
         deployment-settings-file: src/${{ inputs.solution_name }}/config/deploymentSettings.json
-        run-asynchronously: true

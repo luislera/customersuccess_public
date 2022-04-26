@@ -1,0 +1,11 @@
+<environmentvariabledefinition schemaname="cr3c5_TestVar2">
+  <defaultvalue>value2</defaultvalue>
+  <displayname default="TestVar2">
+    <label description="TestVar2" languagecode="1033" />
+  </displayname>
+  <introducedversion>1.0.0.0</introducedversion>
+  <iscustomizable>1</iscustomizable>
+  <isrequired>0</isrequired>
+  <secretstore>0</secretstore>
+  <type>100000000</type>
+</environmentvariabledefinition>

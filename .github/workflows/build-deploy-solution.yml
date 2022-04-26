@@ -16,6 +16,10 @@ on:
       environment:
         required: true
         description: "environment where the build will be deployed"
+      solution_action:
+        required: true
+        description: "import solution using an update or an upgrade"
+        default: "update"
 
 jobs:
   build-deploy-solution:
@@ -48,7 +52,7 @@ jobs:
 
       - uses: actions/checkout@v2
 
-      - id: build-solution
+      - name: build-solution
         uses: ./.github/actions/build-solution
         with:
           ref: ${{ github.event.inputs.ref }}
@@ -80,15 +84,15 @@ jobs:
           client_secret: ${{ secrets.CLIENT_SECRET }}
           environment: ${{ github.event.inputs.environment }}
 
-      #- id: turn-on-flows-impersonation
-      #  uses: ./.github/actions/turn-on-flows-impersonation
-      #  with:
-      #    environment_url: ${{ secrets.ENVIRONMENT_URL }}
-      #    solution_name: ${{ github.event.inputs.solution_name }}
-      #    tenant_id: ${{ secrets.TENANT_ID }}
-      #    app_id: ${{ secrets.CLIENT_ID }}
-      #    client_secret: ${{ secrets.CLIENT_SECRET }}
-      #    secrets: ${{ toJSON(secrets) }}
+      - id: turn-on-flows-impersonation
+        uses: ./.github/actions/turn-on-flows-impersonation
+        with:
+          environment_url: ${{ secrets.ENVIRONMENT_URL }}
+          solution_name: ${{ github.event.inputs.solution_name }}
+          tenant_id: ${{ secrets.TENANT_ID }}
+          app_id: ${{ secrets.CLIENT_ID }}
+          client_secret: ${{ secrets.CLIENT_SECRET }}
+          secrets: ${{ toJSON(secrets) }}
 
       - if: contains(github.event.inputs.ref, 'refs/pull')
         name: update-commit-status

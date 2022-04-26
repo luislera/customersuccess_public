@@ -23,6 +23,13 @@ runs:
       with:
         ref: ${{ inputs.ref }}
 
+    - name: debug-step
+      shell: bash
+      run: |
+        echo "solution_name ${{ inputs.solution_name }}"
+        echo "dev_build ${{ inputs.dev_build }}"
+        echo "solution_package_source ${{ inputs.solution_package_source }}"
+
     # set environment and build number as output variables for further use
     - id: set-build-number
       name: set-build-number

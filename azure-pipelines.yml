@@ -15,5 +15,5 @@ steps:
   inputs:
     targetType: 'filePath'
     filePath: $(System.DefaultWorkingDirectory)\test.ps1
-  displayName: 'Print Hello World'
+  displayName: 'Invoke HTTP Request and loop'
 

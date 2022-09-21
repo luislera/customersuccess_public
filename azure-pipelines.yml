@@ -5,7 +5,7 @@
 jobs:
 - job: job_1
   displayName: job 1
-  timeoutInMinutes: 2
+  timeoutInMinutes: 1
 
   pool:
     vmImage: windows-2019
@@ -13,7 +13,7 @@ jobs:
   steps:
   - checkout: self
   - task: PowerShell@2
-    retryCountOnTaskFailure: 25
+    retryCountOnTaskFailure: 10
     inputs:
       targetType: 'filePath'
       filePath: $(System.DefaultWorkingDirectory)\test2.ps1

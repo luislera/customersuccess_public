@@ -2,19 +2,20 @@
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
+jobs:
+- job: job_1
+  displayName: job 1
+  timeoutInMinutes: 2
 
-trigger:
-- main
+  pool:
+    vmImage: windows-2019
 
-pool:
-  vmImage: windows-2019
-
-steps:
-- checkout: self
-- task: PowerShell@2
-  retryCountOnTaskFailure: 5
-  inputs:
-    targetType: 'filePath'
-    filePath: $(System.DefaultWorkingDirectory)\test2.ps1
-  displayName: 'Invoke HTTP Request and loop'
+  steps:
+  - checkout: self
+  - task: PowerShell@2
+    retryCountOnTaskFailure: 25
+    inputs:
+      targetType: 'filePath'
+      filePath: $(System.DefaultWorkingDirectory)\test2.ps1
+    displayName: 'Invoke HTTP Request and loop'
 

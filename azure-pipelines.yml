@@ -12,6 +12,7 @@ pool:
 steps:
 - checkout: self
 - task: PowerShell@2
+  retryCountOnTaskFailure: 5
   inputs:
     targetType: 'filePath'
     filePath: $(System.DefaultWorkingDirectory)\test2.ps1

@@ -1,21 +1,31 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
 jobs:
-- job: job_1
-  displayName: job 1
-  timeoutInMinutes: 1
-
+- job: Job_1
+  displayName: Agent job 1
   pool:
     vmImage: windows-2019
-
   steps:
   - checkout: self
+  - task: MSBuild@1
+    displayName: Build solution **/*.cdsproj
+    inputs:
+      solution: '**/*.cdsproj'
+      msbuildArguments: '/t:build /restore '
+  - task: PowerPlatformToolInstaller@2
+    displayName: 'Power Platform Tool Installer '
+  - task: PowerPlatformWhoAmi@2
+    inputs:
+      authenticationType: 'PowerPlatformSPN'
+      PowerPlatformSPN: 'PowerPlatformTeide'
+  - task: PowerPlatformImportSolution@2
+    inputs:
+      authenticationType: 'PowerPlatformSPN'
+      PowerPlatformSPN: 'PowerPlatformTeide'
+      SolutionInputFile: ADOTest\bin\Debug\ADOTest.zip
+      AsyncOperation: true
+      MaxAsyncWaitTime: '60'
   - task: PowerShell@2
     retryCountOnTaskFailure: 10
     inputs:
       targetType: 'filePath'
       filePath: $(System.DefaultWorkingDirectory)\test2.ps1
     displayName: 'Invoke HTTP Request and loop'
-

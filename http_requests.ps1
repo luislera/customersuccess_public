@@ -66,7 +66,7 @@ function PvaPublish{
     ##########################################################
     param ([string] $botId)
 
-    $uriParams = "bots($(botId))/Microsoft.Dynamics.CRM.PvaPublish"
+    $uriParams = "bots($($env:botId))/Microsoft.Dynamics.CRM.PvaPublish"
 
     $apiCallParams =
     @{

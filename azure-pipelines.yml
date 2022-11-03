@@ -20,8 +20,8 @@ jobs:
     inputs:
       authenticationType: 'PowerPlatformSPN'
       PowerPlatformSPN: 'PowerPlatformTeide'
-      Environment: '$(EnvironmentUrl)'
-      SolutionInputFile: '$(botName)\bin\Debug\$(botName).zip'
+      Environment: '$(environmentUrl)'
+      SolutionInputFile: '$(solutionTest)\bin\Debug\$(solutionTest).zip'
       AsyncOperation: true
       MaxAsyncWaitTime: '60'
   - task: PowerShell@2

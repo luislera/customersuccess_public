@@ -66,7 +66,7 @@ function PvaPublish{
     ##########################################################
     param ([string] $botId)
 
-    $uriParams = "bots($($env:botId))/Microsoft.Dynamics.CRM.PvaPublish"
+    $uriParams = "bots($($botId))/Microsoft.Dynamics.CRM.PvaPublish"
 
     $apiCallParams =
     @{
@@ -86,9 +86,9 @@ function PvaPublishStatus{
     ##########################################################
     # Second HTTP request, a POST to bots($botId)/PvaPublishStatus, using the jobId obtained from previous request.
     ##########################################################
-    param ([string] $jobId)
+    param ([string] $botId, [string] $jobId)
 
-    $uriParams = "bots($($env:botId))/Microsoft.Dynamics.CRM.PvaPublishStatus"
+    $uriParams = "bots($($botId))/Microsoft.Dynamics.CRM.PvaPublishStatus"
     $apiCallParams =
     @{
         URI = "$($env:dataverseEnvUrl)/api/data/v9.2/$($uriParams)"
@@ -96,7 +96,6 @@ function PvaPublishStatus{
             "Authorization" = "$($authResponse.token_type) $($authResponse.access_token)"
             "Content-Type" = "application/json"
         }
-        #Body = @{"PublishBotJob" = "$($jobId)"}
         Method = 'POST'
     }
 
@@ -128,7 +127,7 @@ $Continue = "Submitted","Snapshotting","Validating","Publishing"
 $authResponse = GetToken
 
 # Get the botId using the bot name variable
-$botId = GetBotId "$($env:botName)"
+$botId = GetBotId $($env:botName)
 
 if ($botId -eq 0)
 {
@@ -137,7 +136,7 @@ if ($botId -eq 0)
 }
 
 # Call PvaPublish
-$PvaPublishResponse = PvaPublish
+$PvaPublishResponse = PvaPublish $botId
 
 # Save the job id into a variable
 $jobId= $PvaPublishResponse.PublishBotJobResponse.jobId
@@ -153,7 +152,7 @@ if($initial_state -ne $PublishingState.Finished){
         Start-Sleep -Seconds 5
         switch($current_state) {
             { $PublishingState.Submitted, $PublishingState.Publishing, $PublishingState.Snapshotting, $PublishingState.Validating } {
-                $response = PvaPublishStatus $jobId
+                $response = PvaPublishStatus $botId $jobId
                 $current_state = $response.state
                 break
             }

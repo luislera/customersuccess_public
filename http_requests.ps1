@@ -126,7 +126,7 @@ $Continue = "Submitted","Snapshotting","Validating","Publishing"
 # Obtain the token
 $authResponse = GetToken
 
-# Get the botId using the bot name variable
+# Get the botId using the bot name
 $botId = GetBotId $($env:botName)
 
 if ($botId -eq 0)

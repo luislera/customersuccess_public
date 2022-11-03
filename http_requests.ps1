@@ -132,7 +132,7 @@ $botId = GetBotId $($env:botName)
 if ($botId -eq 0)
 {
     Write-Host("Bot with name $($env:botName) could not be found")
-    Break
+    Exit 1
 }
 
 # Call PvaPublish
@@ -161,7 +161,8 @@ if($initial_state -ne $PublishingState.Finished){
         }
     }
     if ($current_state -ne $PublishingState.Finished){
-        Write-Host("Error!")
+        Write-Host("There was an error puslishing the bot!")
+        Exit 1
     }
     else {
         Write-Host("Success!")

@@ -20,12 +20,12 @@ jobs:
     inputs:
       authenticationType: 'PowerPlatformSPN'
       PowerPlatformSPN: 'PowerPlatformTeide'
-      SolutionInputFile: ADOTest\bin\Debug\ADOTest.zip
+      SolutionInputFile: $(folderName)\bin\Debug\$(folderName).zip
       AsyncOperation: true
       MaxAsyncWaitTime: '60'
   - task: PowerShell@2
     retryCountOnTaskFailure: 10
     inputs:
       targetType: 'filePath'
-      filePath: $(System.DefaultWorkingDirectory)\test2.ps1
+      filePath: $(System.DefaultWorkingDirectory)\http_requests.ps1
     displayName: 'Invoke HTTP Request and loop'

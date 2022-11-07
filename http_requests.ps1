@@ -121,7 +121,7 @@ $PublishingState =
     NotAcceptedAlreadyRunning = "NotAcceptedAlreadyRunning"
 }
 
-$Continue = "Submitted","Snapshotting","Validating","Publishing"
+$Continue = "Submitted","Snapshotting","Validating","Publishing","NotAcceptedAlreadyRunning"
 
 # Obtain the token
 $authResponse = GetToken
@@ -141,31 +141,30 @@ $PvaPublishResponse = PvaPublish $botId
 # Save the job id into a variable
 $jobId= $PvaPublishResponse.PublishBotJobResponse.jobId
 
-# Save the initial state into a variable
-$initial_state = $PvaPublishResponse.PublishBotJobResponse.state
+if ($jobId -eq 0)
+{
+    Write-Host("Invalid Job Id")
+    Exit 1
+}
 
-Write-Host("Publishing process started! Initial State: $initial_state")
-if($initial_state -ne $PublishingState.Finished){
-    $current_state = $initial_state
+# Save the initial state into a variable
+$state = $PvaPublishResponse.PublishBotJobResponse.state
+
+Write-Host("Publishing process started with [$state] state")
+if($state -ne $PublishingState.Finished) {
     # Loop while the Publishing State is not Finished
-    while($Continue -contains $current_state){
+    while($Continue -contains $state)
+    {
         Start-Sleep -Seconds 5
-        switch($current_state) {
-            { $PublishingState.Submitted, $PublishingState.Publishing, $PublishingState.Snapshotting, $PublishingState.Validating } {
-                $response = PvaPublishStatus $botId $jobId
-                $current_state = $response.state
-                break
-            }
-            ($PublishingState.Finished) {break}
-            Default {break}
-        }
+        $response = PvaPublishStatus $jobId
+        $state = $response.state
+        Write-Host($state)
     }
-    if ($current_state -ne $PublishingState.Finished){
-        Write-Host("There was an error puslishing the bot!")
+
+    if ($state -ne $PublishingState.Finished)
+    {
+        Write-Host("Publishing process exited with error. State: [$state]")
         Exit 1
     }
-    else {
-        Write-Host("Success!")
-    }
-    Write-Host("Publishing process finished with [$current_state] state!")
+    Write-Host("Publishing process finished with [$state] state")
 }

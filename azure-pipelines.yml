@@ -12,5 +12,5 @@ jobs:
       filePath: $(System.DefaultWorkingDirectory)\http_requests.ps1
     displayName: 'Invoke HTTP Request and loop'
     env:
-      $appId: $(env:appId)
-      $clientSecret: $(env:clientSecret)
+      appId: $(appId)
+      clientSecret: $(clientSecret)

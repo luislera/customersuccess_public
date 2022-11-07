@@ -3,17 +3,11 @@ function GetToken {
     # Access Token Request
     ##########################################################
 
-    $client_id = $env:appId;
-    Write-Host("client_id: $client_id")
-    $client_secret = $env:clientSecret;
-    Write-Host("client_secret: $client_secret")
-    $client_id.ToCharArray()
-
     # OAuth Body Access Token Request
     $authBody =
     @{
-        client_id = $client_id;
-        client_secret = $client_secret;
+        client_id = $env:appId
+        client_secret = $env:clientSecret
         scope = "$($env:dataverseEnvUrl)/.default"
         grant_type = 'client_credentials'
     }

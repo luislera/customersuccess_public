@@ -46,7 +46,7 @@ function GetBotId{
     }
 
     $apiCallRequest = Invoke-RestMethod @apiCallParams -ErrorAction Stop
-    $botId = 0;
+    $botId = 0
 
     foreach ($bot in $apiCallRequest.value)
     {

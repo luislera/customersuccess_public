@@ -3,9 +3,9 @@ function GetToken {
     # Access Token Request
     ##########################################################
 
-    $client_id = $appId;
+    $client_id = $env:appId;
     Write-Host("client_id: $client_id")
-    $client_secret = $clientSecret;
+    $client_secret = $env:clientSecret;
     Write-Host("client_secret: $client_secret")
     $client_id.ToCharArray()
 

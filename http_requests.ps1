@@ -156,7 +156,7 @@ Write-Host("Publishing process started with [$state] state")
 while($Continue -contains $state)
 {
     Start-Sleep -Seconds 5
-    $response = PvaPublishStatus $jobId
+    $response = PvaPublishStatus $botId $jobId
     $state = $response.state
     Write-Host($state)
 }

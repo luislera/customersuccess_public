@@ -151,20 +151,20 @@ if ($jobId -eq 0)
 $state = $PvaPublishResponse.PublishBotJobResponse.state
 
 Write-Host("Publishing process started with [$state] state")
-if($state -ne $PublishingState.Finished) {
-    # Loop while the Publishing State is not Finished
-    while($Continue -contains $state)
-    {
-        Start-Sleep -Seconds 5
-        $response = PvaPublishStatus $jobId
-        $state = $response.state
-        Write-Host($state)
-    }
 
-    if ($state -ne $PublishingState.Finished)
-    {
-        Write-Host("Publishing process exited with error. State: [$state]")
-        Exit 1
-    }
-    Write-Host("Publishing process finished with [$state] state")
+# Continue while the state is inside the array defined above
+while($Continue -contains $state)
+{
+    Start-Sleep -Seconds 5
+    $response = PvaPublishStatus $jobId
+    $state = $response.state
+    Write-Host($state)
 }
+
+if ($state -ne $PublishingState.Finished)
+{
+    Write-Host("Publishing process exited with error. State: [$state]")
+    Exit 1
+}
+Write-Host("Publishing process finished with [$state] state")
+

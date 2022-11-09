@@ -19,10 +19,11 @@ jobs:
     name: test
     steps:
         - uses: actions/checkout@v2
-        
+
         - name: step_1
           shell: cmd
           run: |
             dir
-            echo "${{ github.event.inputs.botName }}"
+            cd tool
+            TestBot.exe "${{ github.event.inputs.botName }}" "${{ github.event.inputs.botId }}" "${{ github.event.inputs.fileName }}"
 

@@ -21,5 +21,6 @@ jobs:
         - name: step_1
           shell: cmd
           run: |
+            ./tool/TestBot.exe
             echo "${{ github.event.inputs.botName }}"
 

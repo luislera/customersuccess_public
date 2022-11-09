@@ -5,13 +5,13 @@ on:
     inputs:
       botName:
         required: true
-        description: "DYMtest"
+        description: "Bot Name"
       botId:
         required: false
-        description: "fbbff917-cf89-4a4e-a0b7-63673ec64ecd"
+        description: "Bot Id"
       fileName:
         required: true
-        description: "transcript.txt"
+        description: "File name"
 
 jobs:
   run-test-tool:
@@ -21,5 +21,5 @@ jobs:
         - name: step_1
           shell: cmd
           run: |
-            echo %github.event.inputs.botName%
+            echo "${{ github.event.inputs.botName }}"
 

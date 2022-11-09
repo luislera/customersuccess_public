@@ -1,0 +1,25 @@
+name: run-test-tool
+
+on:
+  workflow_dispatch:
+    inputs:
+      botName:
+        required: true
+        description: "DYMtest"
+      botId:
+        required: false
+        description: "fbbff917-cf89-4a4e-a0b7-63673ec64ecd"
+      fileName:
+        required: true
+        description: "transcript.txt"
+
+jobs:
+  run-test-tool:
+    runs-on: windows-latest
+    name: test
+    steps:
+        - name: step_1
+          shell: cmd
+          run: |
+            echo %github.event.inputs.botName%
+

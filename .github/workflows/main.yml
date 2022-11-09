@@ -7,7 +7,7 @@ on:
         required: true
         description: "Bot Name"
       botId:
-        required: false
+        required: true
         description: "Bot Id"
       fileName:
         required: true
@@ -21,6 +21,6 @@ jobs:
         - name: step_1
           shell: cmd
           run: |
-            ./tool/TestBot.exe
+            tool/TestBot.exe
             echo "${{ github.event.inputs.botName }}"
 

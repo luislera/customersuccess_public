@@ -18,6 +18,8 @@ jobs:
     runs-on: windows-latest
     name: test
     steps:
+        - uses: actions/checkout@v2
+        
         - name: step_1
           shell: cmd
           run: |

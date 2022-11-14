@@ -16,7 +16,7 @@ jobs:
     inputs:
       authenticationType: 'PowerPlatformSPN'
       PowerPlatformSPN: 'PowerPlatformTeide'
-      Environment: '$(environmentUrl)'
+      Environment: 'https://$(orgName).crm.dynamics.com/'
       SolutionInputFile: '$(solutionName)\bin\Debug\$(solutionName).zip'
       AsyncOperation: true
       MaxAsyncWaitTime: '60'

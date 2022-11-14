@@ -9,18 +9,19 @@ jobs:
     displayName: Build solution **/*.cdsproj
     inputs:
       solution: '**/*.cdsproj'
-      msbuildArguments: '/t:build /restore '
+      msbuildArguments: '/t:build /restore'
   - task: PowerPlatformToolInstaller@2
-    displayName: 'Power Platform Tool Installer '
+    displayName: 'Power Platform Tool Installer'
   - task: PowerPlatformImportSolution@2
     inputs:
       authenticationType: 'PowerPlatformSPN'
       PowerPlatformSPN: 'PowerPlatformTeide'
-      Environment: '$(environmentUrl)'
+      Environment: 'https://$(orgName).crm.dynamics.com/'
       SolutionInputFile: '$(solutionName)\bin\Debug\$(solutionName).zip'
       AsyncOperation: true
       MaxAsyncWaitTime: '60'
   - task: PowerPlatformSetConnectionVariables@2
+    displayName: 'Set connection variables'
     name: connectionVariables
     inputs:
       authenticationType: 'PowerPlatformSPN'
@@ -30,7 +31,7 @@ jobs:
     inputs:
       targetType: 'filePath'
       filePath: $(System.DefaultWorkingDirectory)\http_requests.ps1
-    displayName: 'Invoke HTTP Request and loop'
+    displayName: 'Publish the bot and validate status'
     env:
       appId: $(connectionVariables.BuildTools.ApplicationId)
       clientSecret: $(connectionVariables.BuildTools.ClientSecret)

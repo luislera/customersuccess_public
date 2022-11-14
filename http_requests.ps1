@@ -8,7 +8,7 @@ function GetToken {
     @{
         client_id = $env:appId
         client_secret = $env:clientSecret
-        scope = "$($env:dataverseEnvUrl)/.default"
+        scope = "https://$($env:orgName).api.crm.dynamics.com/.default"
         grant_type = 'client_credentials'
     }
 

@@ -14,8 +14,6 @@ jobs:
     displayName: 'Power Platform Tool Installer '
   - task: PowerPlatformImportSolution@2
     inputs:
-      authenticationType: 'PowerPlatformSPN'
-      PowerPlatformSPN: 'PowerPlatformTeide'
       Environment: '$(environmentUrl)'
       SolutionInputFile: '$(solutionName)\bin\Debug\$(solutionName).zip'
       AsyncOperation: true

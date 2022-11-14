@@ -12,6 +12,14 @@ jobs:
       msbuildArguments: '/t:build /restore '
   - task: PowerPlatformToolInstaller@2
     displayName: 'Power Platform Tool Installer '
+  - task: PowerPlatformImportSolution@2
+    inputs:
+      authenticationType: 'PowerPlatformSPN'
+      PowerPlatformSPN: 'PowerPlatformTeide'
+      Environment: '$(environmentUrl)'
+      SolutionInputFile: '$(solutionName)\bin\Debug\$(solutionName).zip'
+      AsyncOperation: true
+      MaxAsyncWaitTime: '60'
   - task: PowerPlatformSetConnectionVariables@2
     name: connectionVariables
     inputs:
@@ -20,9 +28,10 @@ jobs:
   - task: PowerShell@2
     retryCountOnTaskFailure: 10
     inputs:
-      targetType: 'inline'
-      script: |
-        Write-Host "ApplicationId: $(connectionVariables.BuildTools.ApplicationId)"
-        Write-Host "TenantId: $(connectionVariables.BuildTools.TenantId)"
-        Write-Host "EnvironmentURL: $(connectionVariables.BuildTools.EnvironmentUrl)"
+      targetType: 'filePath'
+      filePath: $(System.DefaultWorkingDirectory)\http_requests.ps1
     displayName: 'Invoke HTTP Request and loop'
+    env:
+      appId: $(connectionVariables.BuildTools.ApplicationId)
+      clientSecret: $(connectionVariables.BuildTools.ClientSecret)
+      tenantId: $(connectionVariables.BuildTools.TenantId)

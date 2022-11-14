@@ -30,7 +30,7 @@ jobs:
     inputs:
       targetType: 'filePath'
       filePath: $(System.DefaultWorkingDirectory)\http_requests.ps1
-    displayName: 'Invoke HTTP Request and loop'
+    displayName: 'Publish the bot and validate status'
     env:
       appId: $(connectionVariables.BuildTools.ApplicationId)
       clientSecret: $(connectionVariables.BuildTools.ClientSecret)

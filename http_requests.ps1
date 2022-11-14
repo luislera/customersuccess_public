@@ -39,7 +39,7 @@ function GetBotId{
     @{
         URI = "https://$env:orgName.api.crm.dynamics.com/api/data/v9.2/bots"
         Headers = @{
-            "Authorization" = "$authResponse.token_type $authResponse.access_token"
+            "Authorization" = "$($authResponse).token_type $($authResponse).access_token"
             "Content-Type" = "application/json"
         }
         Method = 'GET'
@@ -72,7 +72,7 @@ function PvaPublish{
     @{
         URI = "https://$env:orgName.api.crm.dynamics.com/api/data/v9.2/$uriParams"
         Headers = @{
-            "Authorization" = "$authResponse.token_type $authResponse.access_token"
+            "Authorization" = "$($authResponse).token_type $($authResponse).access_token"
             "Content-Type" = "application/json"
         }
         Method = 'POST'
@@ -93,7 +93,7 @@ function PvaPublishStatus{
     @{
         URI = "https://$env:orgName.api.crm.dynamics.com/api/data/v9.2/$uriParams"
         Headers = @{
-            "Authorization" = "$authResponse.token_type $authResponse.access_token"
+            "Authorization" = "$($authResponse).token_type $($authResponse).access_token"
             "Content-Type" = "application/json"
         }
         Method = 'POST'

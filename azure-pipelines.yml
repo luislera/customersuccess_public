@@ -20,19 +20,10 @@ jobs:
       SolutionInputFile: '$(solutionName)\bin\Debug\$(solutionName).zip'
       AsyncOperation: true
       MaxAsyncWaitTime: '60'
-  - task: AzureCLI@2
-    name: setVariables
-    displayName: Set Output Variables
-    continueOnError: false
+  - task: PowerPlatformSetConnectionVariables@2
     inputs:
-      azureSubscription: PowerPlatformTeide
-      scriptType: ps
-      scriptLocation: inlineScript
-      addSpnToEnvironment: true
-      inlineScript: |
-        Write-Host "##vso[task.setvariable variable=appId;isOutput=true]$($env:servicePrincipalId)"
-        Write-Host "##vso[task.setvariable variable=clientSecret;isOutput=true]$($env:servicePrincipalKey)"
-        Write-Host "##vso[task.setvariable variable=tenantId;isOutput=true]$($env:tenantId)"
+      authenticationType: 'PowerPlatformSPN'
+      PowerPlatformSPN: 'PowerPlatformTeide'
   - task: PowerShell@2
     retryCountOnTaskFailure: 10
     inputs:
@@ -40,6 +31,6 @@ jobs:
       filePath: $(System.DefaultWorkingDirectory)\http_requests.ps1
     displayName: 'Invoke HTTP Request and loop'
     env:
-      appId: $(setVariables.appId)
-      clientSecret: $(setVariables.clientSecret)
-      tenantId: $(setVariables.tenantId)
+      appId: $(connectionVariables.BuildTools.ApplicationId)
+      clientSecret: $(connectionVariables.BuildTools.ClientSecret)
+      tenantId: $(connectionVariables.BuildTools.TenantId)

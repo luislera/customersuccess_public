@@ -11,7 +11,8 @@ function GetToken {
         scope = "https://$($env:orgName).api.crm.dynamics.com/.default"
         grant_type = 'client_credentials'
     }
-
+Write-Host $($env:orgName)
+Write-Host $authBody
     $oAuthTokenEndpoint = "https://login.microsoftonline.com/$env:tenantId/oauth2/v2.0/token"
 
     # Parameters for OAuth Access Token Request

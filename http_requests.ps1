@@ -12,7 +12,7 @@ function GetToken {
         grant_type = 'client_credentials'
     }
 
-    $oAuthTokenEndpoint = "https://login.microsoftonline.com/$($env:tenantId)/oauth2/v2.0/token"
+    $oAuthTokenEndpoint = "https://login.microsoftonline.com/$env:tenantId/oauth2/v2.0/token"
 
     # Parameters for OAuth Access Token Request
     $authParams =

@@ -13,8 +13,7 @@ function GetToken {
     }
 
     $oAuthTokenEndpoint = "https://login.microsoftonline.com/$env:tenantId/oauth2/v2.0/token"
-Write-Host "https://$env:orgName.api.crm.dynamics.com/.default"
-Write-Host $oAuthTokenEndpoint
+
     # Parameters for OAuth Access Token Request
     $authParams =
     @{
@@ -35,7 +34,7 @@ function GetBotId{
     # Get the botId using the bot name
     ##########################################################
     param ([string] $botName)
-Write-Host Write-Host $oAuthTokenEndpoint
+
     $apiCallParams =
     @{
         URI = "https://$env:orgName.api.crm.dynamics.com/api/data/v9.2/bots"
@@ -57,7 +56,6 @@ Write-Host Write-Host $oAuthTokenEndpoint
             break
         }
     }
-
     return $botId
 }
 
@@ -102,7 +100,6 @@ function PvaPublishStatus{
 
     $Body = @{"PublishBotJob" = $jobId}
     $apiCallRequest = Invoke-RestMethod @apiCallParams -Body ($Body | ConvertTo-Json) -ErrorAction Stop
-    Write-Host($apiCallRequest.state)
     return $apiCallRequest
 }
 

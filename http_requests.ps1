@@ -8,11 +8,10 @@ function GetToken {
     @{
         client_id = $env:appId
         client_secret = $env:clientSecret
-        scope = "https://$($env:orgName).api.crm.dynamics.com/.default"
+        scope = "https://$env:orgName.api.crm.dynamics.com/.default"
         grant_type = 'client_credentials'
     }
-Write-Host $($env:orgName)
-Write-Host $authBody
+
     $oAuthTokenEndpoint = "https://login.microsoftonline.com/$env:tenantId/oauth2/v2.0/token"
 
     # Parameters for OAuth Access Token Request
@@ -38,9 +37,9 @@ function GetBotId{
 
     $apiCallParams =
     @{
-        URI = "$($env:dataverseEnvUrl)/api/data/v9.2/bots"
+        URI = "https://$env:orgName.api.crm.dynamics.com/api/data/v9.2/bots"
         Headers = @{
-            "Authorization" = "$($authResponse.token_type) $($authResponse.access_token)"
+            "Authorization" = "$authResponse.token_type $authResponse.access_token"
             "Content-Type" = "application/json"
         }
         Method = 'GET'
@@ -67,13 +66,13 @@ function PvaPublish{
     ##########################################################
     param ([string] $botId)
 
-    $uriParams = "bots($($botId))/Microsoft.Dynamics.CRM.PvaPublish"
+    $uriParams = "bots($botId)/Microsoft.Dynamics.CRM.PvaPublish"
 
     $apiCallParams =
     @{
-        URI = "$($env:dataverseEnvUrl)/api/data/v9.2/$($uriParams)"
+        URI = "https://$env:orgName.api.crm.dynamics.com/api/data/v9.2/$uriParams"
         Headers = @{
-            "Authorization" = "$($authResponse.token_type) $($authResponse.access_token)"
+            "Authorization" = "$authResponse.token_type $authResponse.access_token"
             "Content-Type" = "application/json"
         }
         Method = 'POST'
@@ -89,18 +88,18 @@ function PvaPublishStatus{
     ##########################################################
     param ([string] $botId, [string] $jobId)
 
-    $uriParams = "bots($($botId))/Microsoft.Dynamics.CRM.PvaPublishStatus"
+    $uriParams = "bots($botId)/Microsoft.Dynamics.CRM.PvaPublishStatus"
     $apiCallParams =
     @{
-        URI = "$($env:dataverseEnvUrl)/api/data/v9.2/$($uriParams)"
+        URI = "https://$env:orgName.api.crm.dynamics.com/api/data/v9.2/$uriParams"
         Headers = @{
-            "Authorization" = "$($authResponse.token_type) $($authResponse.access_token)"
+            "Authorization" = "$authResponse.token_type $authResponse.access_token"
             "Content-Type" = "application/json"
         }
         Method = 'POST'
     }
 
-    $Body = @{"PublishBotJob" = "$($jobId)"}
+    $Body = @{"PublishBotJob" = $jobId}
     $apiCallRequest = Invoke-RestMethod @apiCallParams -Body ($Body | ConvertTo-Json) -ErrorAction Stop
     Write-Host($apiCallRequest.state)
     return $apiCallRequest
@@ -128,11 +127,11 @@ $Continue = "Submitted","Snapshotting","Validating","Publishing","NotAcceptedAlr
 $authResponse = GetToken
 
 # Get the botId using the bot name
-$botId = GetBotId $($env:botName)
+$botId = GetBotId $env:botName
 
 if ($botId -eq 0)
 {
-    Write-Host("Bot with name $($env:botName) could not be found")
+    Write-Host("Bot with name $env:botName could not be found")
     Exit 1
 }
 

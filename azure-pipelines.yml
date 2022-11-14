@@ -9,9 +9,9 @@ jobs:
     displayName: Build solution **/*.cdsproj
     inputs:
       solution: '**/*.cdsproj'
-      msbuildArguments: '/t:build /restore '
+      msbuildArguments: '/t:build /restore'
   - task: PowerPlatformToolInstaller@2
-    displayName: 'Power Platform Tool Installer '
+    displayName: 'Power Platform Tool Installer'
   - task: PowerPlatformImportSolution@2
     inputs:
       authenticationType: 'PowerPlatformSPN'
@@ -21,6 +21,7 @@ jobs:
       AsyncOperation: true
       MaxAsyncWaitTime: '60'
   - task: PowerPlatformSetConnectionVariables@2
+    displayName: 'Set connection variables'
     name: connectionVariables
     inputs:
       authenticationType: 'PowerPlatformSPN'

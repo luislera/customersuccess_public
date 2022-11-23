@@ -6,6 +6,9 @@ on:
       userName:
         required: true
         description: "userName"
+      greeting:
+        required: true
+        description: "greeting"
 
 jobs:
   run-test-tool:
@@ -18,4 +21,4 @@ jobs:
           shell: cmd
           run: |
             cd tool
-            CommandLineApp.exe "${{ github.event.inputs.userName }}" -v
+            CommandLineApp.exe "${{ github.event.inputs.userName }}" --greeting "${{ github.event.inputs.greeting }}" -v

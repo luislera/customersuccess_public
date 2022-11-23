@@ -3,12 +3,9 @@ name: run-test-tool
 on:
   workflow_dispatch:
     inputs:
-      userName:
+      parameters:
         required: true
-        description: "userName"
-      greeting:
-        required: true
-        description: "greeting"
+        description: "parameters"
 
 jobs:
   run-test-tool:
@@ -21,4 +18,4 @@ jobs:
           shell: cmd
           run: |
             cd tool
-            "${{--greeting github.event.inputs.userName }}" CommandLineApp.exe "${{ github.event.inputs.userName }}"
+            CommandLineApp.exe "${{ github.event.inputs.parameters }}"

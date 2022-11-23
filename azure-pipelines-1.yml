@@ -19,5 +19,5 @@ steps:
   displayName: 'Run a multi-line script'
 - task: CmdLine@2
   inputs:
-    script: 'TestBot.exe %BOTNAME% %BOTID% %FILENAME%'
+    script: 'BotTestApp.exe %PATH%'
     workingDirectory: './tool'

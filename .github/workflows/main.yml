@@ -18,4 +18,4 @@ jobs:
           shell: cmd
           run: |
             cd tool
-            TestBot.exe "${{ github.event.inputs.parameters }}"
+            CommandLineApp.exe "${{ github.event.inputs.parameters }}"

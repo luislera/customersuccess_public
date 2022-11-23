@@ -3,15 +3,9 @@ name: run-test-tool
 on:
   workflow_dispatch:
     inputs:
-      botName:
+      parameters:
         required: true
-        description: "Bot Name"
-      botId:
-        required: true
-        description: "Bot Id"
-      fileName:
-        required: true
-        description: "File name"
+        description: "parameters"
 
 jobs:
   run-test-tool:
@@ -24,5 +18,4 @@ jobs:
           shell: cmd
           run: |
             cd tool
-            TestBot.exe "${{ github.event.inputs.botName }}" "${{ github.event.inputs.botId }}" "${{ github.event.inputs.fileName }}"
-
+            TestBot.exe "${{ github.event.inputs.parameters }}"

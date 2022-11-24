@@ -17,6 +17,8 @@ jobs:
     steps:
         - uses: actions/checkout@v2
 
+        - name: Make app executable
+          run: chmod +x ./tool/CommandLineApp
         - name: Execute bot test
           shell: bash
           run: ./tool/CommandLineApp "${{ github.event.inputs.userName }}" --greeting "${{ github.event.inputs.greeting }}" -v

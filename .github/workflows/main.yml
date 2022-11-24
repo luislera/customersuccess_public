@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       userName:
-        required: true
+        required: false
         description: "userName"
       greeting:
         required: false

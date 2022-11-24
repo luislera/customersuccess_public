@@ -1,0 +1,28 @@
+name: run-test-tool
+
+on:
+  workflow_dispatch:
+    inputs:
+      botName:
+        required: true
+        description: "Bot Name"
+      botId:
+        required: true
+        description: "Bot Id"
+      fileName:
+        required: true
+        description: "File name"
+
+jobs:
+  run-test-tool:
+    runs-on: windows-latest
+    name: test
+    steps:
+        - uses: actions/checkout@v2
+
+        - name: Execute bot test
+          shell: cmd
+          run: |
+            cd tool
+            TestBot.exe "${{ github.event.inputs.botName }}" "${{ github.event.inputs.botId }}" "${{ github.event.inputs.fileName }}"
+

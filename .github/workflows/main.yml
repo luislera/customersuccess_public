@@ -12,13 +12,13 @@ on:
 
 jobs:
   run-test-tool:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     name: test
     steps:
         - uses: actions/checkout@v2
 
         - name: Execute bot test
-          shell: cmd
+          shell: sh
           run: |
             cd tool
-            CommandLineApp.exe "${{ github.event.inputs.userName }}" --greeting "${{ github.event.inputs.greeting }}" -v
+            CommandLineApp "${{ github.event.inputs.userName }}" --greeting "${{ github.event.inputs.greeting }}" -v

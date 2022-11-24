@@ -19,4 +19,4 @@ jobs:
 
         - name: Execute bot test
           shell: bash
-          run: ./tool/CommandLineApp "${{ github.event.inputs.userName }}" --greeting "${{ github.event.inputs.greeting }}" -v
+          run: sudo ./tool/CommandLineApp "${{ github.event.inputs.userName }}" --greeting "${{ github.event.inputs.greeting }}" -v

@@ -18,7 +18,7 @@ jobs:
         - uses: actions/checkout@v2
 
         - name: Execute bot test
-          shell: sh
+          shell: bash
           run: |
             cd tool
             CommandLineApp.file "${{ github.event.inputs.userName }}" --greeting "${{ github.event.inputs.greeting }}" -v

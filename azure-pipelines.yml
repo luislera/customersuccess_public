@@ -1,0 +1,38 @@
+jobs:
+- job: Job_1
+  displayName: Agent job 1
+  pool:
+    vmImage: windows-2019
+  steps:
+  - checkout: self
+  - task: MSBuild@1
+    displayName: Build solution **/*.cdsproj
+    inputs:
+      solution: '**/*.cdsproj'
+      msbuildArguments: '/t:build /restore'
+  - task: PowerPlatformToolInstaller@2
+    displayName: 'Power Platform Tool Installer'
+  - task: PowerPlatformImportSolution@2
+    inputs:
+      authenticationType: 'PowerPlatformSPN'
+      PowerPlatformSPN: 'PowerPlatformTeide'
+      Environment: 'https://$(orgName).crm.dynamics.com/'
+      SolutionInputFile: '$(solutionName)\bin\Debug\$(solutionName).zip'
+      AsyncOperation: true
+      MaxAsyncWaitTime: '60'
+  - task: PowerPlatformSetConnectionVariables@2
+    displayName: 'Set connection variables'
+    name: connectionVariables
+    inputs:
+      authenticationType: 'PowerPlatformSPN'
+      PowerPlatformSPN: 'PowerPlatformTeide'
+  - task: PowerShell@2
+    retryCountOnTaskFailure: 10
+    inputs:
+      targetType: 'filePath'
+      filePath: $(System.DefaultWorkingDirectory)\http_requests.ps1
+    displayName: 'Publish the bot and validate status'
+    env:
+      appId: $(connectionVariables.BuildTools.ApplicationId)
+      clientSecret: $(connectionVariables.BuildTools.ClientSecret)
+      tenantId: $(connectionVariables.BuildTools.TenantId)

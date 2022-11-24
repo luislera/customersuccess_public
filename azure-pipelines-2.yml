@@ -1,0 +1,41 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+ 
+trigger:
+- main
+
+pool:
+  vmImage: windows-2019
+
+steps:
+- task: MSBuild@1
+  inputs:
+    solution: '**/*.cdsproj'
+    msbuildArguments: '/t:build /restore'
+- task: PowerPlatformToolInstaller@2
+  inputs:
+    DefaultVersion: true
+- task: PowerPlatformImportSolution@2
+  inputs:
+    authenticationType: 'PowerPlatformSPN'
+    PowerPlatformSPN: 'PowerPlatformTeide'
+    Environment: 'https://$(orgName).crm.dynamics.com/'
+    SolutionInputFile: '$(solutionName)\bin\Debug\$(solutionName).zip'
+    AsyncOperation: true
+    MaxAsyncWaitTime: '60'
+- task: PowerPlatformSetConnectionVariables@2
+  name: connectionVariables
+  inputs:
+    authenticationType: 'PowerPlatformSPN'
+    PowerPlatformSPN: 'PowerPlatformTeide'
+    Environment: 'https://$(orgName).crm.dynamics.com/'
+- task: PowerShell@2
+  retryCountOnTaskFailure: 10
+  inputs:
+    filePath: '$(System.DefaultWorkingDirectory)\http_requests.ps1'
+  env:
+    appId: $(connectionVariables.BuildTools.ApplicationId)
+    clientSecret: $(connectionVariables.BuildTools.ClientSecret)
+    tenantId: $(connectionVariables.BuildTools.TenantId)

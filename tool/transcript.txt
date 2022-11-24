@@ -1,0 +1,12 @@
+Title: Test the Lesson 2 - A simple topic with a condition and variable
+Transcript:
+- User: Buy items
+- Bot: to clarify did you mean:.
+- User: Store near me
+- Bot: To clarify did you mean:.
+- User: Lesson 2 - A simple topic with a condition and variable
+- Bot: I'd be glad to help find a store near you.
+- Bot: Which location are you interested in?
+- User: Seattle
+- Bot: Our Seattle store is located in the U District in the University Village. The address is: 1234 E. University Village St. Seattle 34567.
+- Bot: Did that answer your question?

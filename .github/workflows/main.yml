@@ -19,4 +19,6 @@ jobs:
 
         - name: Execute bot test
           shell: sh
-          run: ./CommandLineApp "${{ github.event.inputs.userName }}" --greeting "${{ github.event.inputs.greeting }}" -v
+          run: |
+            cd tool
+            CommandLineApp.file "${{ github.event.inputs.userName }}" --greeting "${{ github.event.inputs.greeting }}" -v

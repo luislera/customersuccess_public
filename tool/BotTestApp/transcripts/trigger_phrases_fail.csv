@@ -1,0 +1,6 @@
+TriggerPhrase,Topic,ExpectedResponse
+hello,Greeting,"Hi, my name is Botty. I can help you with information regarding common afflictions like Flu, Allergies and Diabetes"
+store location,Store Locations,I'd be glad to help find a store near you
+buy items,"Lesson 3 - A topic with a condition, variables and a pre-built entity",I am happy to help you place your order.
+store hours,Open Hours,I'm happy to help with store hours.
+

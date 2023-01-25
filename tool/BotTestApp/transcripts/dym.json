@@ -1,0 +1,388 @@
+{
+    "Activities": [
+        {
+            "ValueType": null,
+            "Id": null,
+            "Type": "message",
+            "Timestamp": 1674141661,
+            "From": {
+                "Id": null,
+                "Role": 1
+            },
+            "ChannelId": null,
+            "Value": null,
+            "TextFormat": null,
+            "Text": "nutrients",
+            "Attachments": null,
+            "ReplyToId": null
+        },
+        {
+            "ValueType": null,
+            "Id": null,
+            "Type": "message",
+            "Timestamp": 1674141661,
+            "From": {
+                "Id": null,
+                "Role": 0
+            },
+            "ChannelId": null,
+            "Value": null,
+            "TextFormat": null,
+            "Text": "To clarify did you mean:",
+            "Attachments": null,
+            "ReplyToId": null
+        },
+        {
+            "ValueType": null,
+            "Id": null,
+            "Type": "message",
+            "Timestamp": 1674141661,
+            "From": {
+                "Id": null,
+                "Role": 1
+            },
+            "ChannelId": null,
+            "Value": null,
+            "TextFormat": null,
+            "Text": "Buy Vitamins",
+            "Attachments": null,
+            "ReplyToId": null
+        },
+        {
+            "ValueType": null,
+            "Id": null,
+            "Type": "message",
+            "Timestamp": 1674141661,
+            "From": {
+                "Id": null,
+                "Role": 0
+            },
+            "ChannelId": null,
+            "Value": null,
+            "TextFormat": null,
+            "Text": "Would you like your vitamins to arrive at your home or pick them up on a physical store?",
+            "Attachments": null,
+            "ReplyToId": null
+        },
+        {
+            "ValueType": null,
+            "Id": null,
+            "Type": "message",
+            "Timestamp": 1674141661,
+            "From": {
+                "Id": null,
+                "Role": 1
+            },
+            "ChannelId": null,
+            "Value": null,
+            "TextFormat": null,
+            "Text": "pick up",
+            "Attachments": null,
+            "ReplyToId": null
+        },
+        {
+            "ValueType": null,
+            "Id": null,
+            "Type": "message",
+            "Timestamp": 1674141661,
+            "From": {
+                "Id": null,
+                "Role": 0
+            },
+            "ChannelId": null,
+            "Value": null,
+            "TextFormat": null,
+            "Text": "I'd be glad to help find a store near you.",
+            "Attachments": null,
+            "ReplyToId": null
+        },
+        {
+            "ValueType": null,
+            "Id": null,
+            "Type": "message",
+            "Timestamp": 1674141661,
+            "From": {
+                "Id": null,
+                "Role": 0
+            },
+            "ChannelId": null,
+            "Value": null,
+            "TextFormat": null,
+            "Text": "Which location are you interested in?",
+            "Attachments": null,
+            "ReplyToId": null
+        },
+        {
+            "ValueType": null,
+            "Id": null,
+            "Type": "message",
+            "Timestamp": 1674141661,
+            "From": {
+                "Id": null,
+                "Role": 1
+            },
+            "ChannelId": null,
+            "Value": null,
+            "TextFormat": null,
+            "Text": "Florida",
+            "Attachments": null,
+            "ReplyToId": null
+        },
+        {
+            "ValueType": null,
+            "Id": null,
+            "Type": "message",
+            "Timestamp": 1674141661,
+            "From": {
+                "Id": null,
+                "Role": 0
+            },
+            "ChannelId": null,
+            "Value": null,
+            "TextFormat": null,
+            "Text": "Our Florida store is located in Coral Gables1160 S Dixie Hwy Coral Gables FL 33146  305-663-8697",
+            "Attachments": null,
+            "ReplyToId": null
+        },
+        {
+            "ValueType": null,
+            "Id": null,
+            "Type": "message",
+            "Timestamp": 1674141661,
+            "From": {
+                "Id": null,
+                "Role": 0
+            },
+            "ChannelId": null,
+            "Value": null,
+            "TextFormat": null,
+            "Text": "Can I help you with anything else?",
+            "Attachments": null,
+            "ReplyToId": null
+        },
+        {
+            "ValueType": null,
+            "Id": null,
+            "Type": "message",
+            "Timestamp": 1674141661,
+            "From": {
+                "Id": null,
+                "Role": 1
+            },
+            "ChannelId": null,
+            "Value": null,
+            "TextFormat": null,
+            "Text": "Yes",
+            "Attachments": null,
+            "ReplyToId": null
+        },
+        {
+            "ValueType": null,
+            "Id": null,
+            "Type": "message",
+            "Timestamp": 1674141661,
+            "From": {
+                "Id": null,
+                "Role": 0
+            },
+            "ChannelId": null,
+            "Value": null,
+            "TextFormat": null,
+            "Text": "Go ahead. I'm listening.",
+            "Attachments": null,
+            "ReplyToId": null
+        },
+        {
+            "ValueType": null,
+            "Id": null,
+            "Type": "message",
+            "Timestamp": 1674141661,
+            "From": {
+                "Id": null,
+                "Role": 1
+            },
+            "ChannelId": null,
+            "Value": null,
+            "TextFormat": null,
+            "Text": "supplements",
+            "Attachments": null,
+            "ReplyToId": null
+        },
+        {
+            "ValueType": null,
+            "Id": null,
+            "Type": "message",
+            "Timestamp": 1674141661,
+            "From": {
+                "Id": null,
+                "Role": 0
+            },
+            "ChannelId": null,
+            "Value": null,
+            "TextFormat": null,
+            "Text": "To clarify did you mean:",
+            "Attachments": null,
+            "ReplyToId": null
+        },
+        {
+            "ValueType": null,
+            "Id": null,
+            "Type": "message",
+            "Timestamp": 1674141661,
+            "From": {
+                "Id": null,
+                "Role": 1
+            },
+            "ChannelId": null,
+            "Value": null,
+            "TextFormat": null,
+            "Text": "Buy Vitamins",
+            "Attachments": null,
+            "ReplyToId": null
+        },
+        {
+            "ValueType": null,
+            "Id": null,
+            "Type": "message",
+            "Timestamp": 1674141661,
+            "From": {
+                "Id": null,
+                "Role": 0
+            },
+            "ChannelId": null,
+            "Value": null,
+            "TextFormat": null,
+            "Text": "I'd be glad to help find a store near you.",
+            "Attachments": null,
+            "ReplyToId": null
+        },
+        {
+            "ValueType": null,
+            "Id": null,
+            "Type": "message",
+            "Timestamp": 1674141661,
+            "From": {
+                "Id": null,
+                "Role": 0
+            },
+            "ChannelId": null,
+            "Value": null,
+            "TextFormat": null,
+            "Text": "Which location are you interested in?",
+            "Attachments": null,
+            "ReplyToId": null
+        },
+        {
+            "ValueType": null,
+            "Id": null,
+            "Type": "message",
+            "Timestamp": 1674141661,
+            "From": {
+                "Id": null,
+                "Role": 1
+            },
+            "ChannelId": null,
+            "Value": null,
+            "TextFormat": null,
+            "Text": "Florida",
+            "Attachments": null,
+            "ReplyToId": null
+        },
+        {
+            "ValueType": null,
+            "Id": null,
+            "Type": "message",
+            "Timestamp": 1674141661,
+            "From": {
+                "Id": null,
+                "Role": 0
+            },
+            "ChannelId": null,
+            "Value": null,
+            "TextFormat": null,
+            "Text": "Our Florida store is located in Coral Gables1160 S Dixie Hwy Coral Gables FL 33146  305-663-8697",
+            "Attachments": null,
+            "ReplyToId": null
+        },
+        {
+            "ValueType": null,
+            "Id": null,
+            "Type": "message",
+            "Timestamp": 1674141661,
+            "From": {
+                "Id": null,
+                "Role": 0
+            },
+            "ChannelId": null,
+            "Value": null,
+            "TextFormat": null,
+            "Text": "Can I help you with anything else?",
+            "Attachments": null,
+            "ReplyToId": null
+        },
+        {
+            "ValueType": null,
+            "Id": null,
+            "Type": "message",
+            "Timestamp": 1674141661,
+            "From": {
+                "Id": null,
+                "Role": 1
+            },
+            "ChannelId": null,
+            "Value": null,
+            "TextFormat": null,
+            "Text": "No",
+            "Attachments": null,
+            "ReplyToId": null
+        },
+        {
+            "ValueType": null,
+            "Id": null,
+            "Type": "message",
+            "Timestamp": 1674141661,
+            "From": {
+                "Id": null,
+                "Role": 0
+            },
+            "ChannelId": null,
+            "Value": null,
+            "TextFormat": null,
+            "Text": "Did that answer your question?",
+            "Attachments": null,
+            "ReplyToId": null
+        },
+        {
+            "ValueType": null,
+            "Id": null,
+            "Type": "message",
+            "Timestamp": 1674141661,
+            "From": {
+                "Id": null,
+                "Role": 1
+            },
+            "ChannelId": null,
+            "Value": null,
+            "TextFormat": null,
+            "Text": "Yes",
+            "Attachments": null,
+            "ReplyToId": null
+        },
+        {
+            "ValueType": null,
+            "Id": null,
+            "Type": "message",
+            "Timestamp": 1674141661,
+            "From": {
+                "Id": null,
+                "Role": 0
+            },
+            "ChannelId": null,
+            "Value": null,
+            "TextFormat": null,
+            "Text": "Thanks for your feedback.",
+            "Attachments": null,
+            "ReplyToId": null
+        }
+    ]
+}

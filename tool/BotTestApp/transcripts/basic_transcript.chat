@@ -1,0 +1,7 @@
+user: buy items
+bot: I am happy to help you place your order.
+bot: To what state will you be shipping?
+user: new york
+bot: There will be an additional shipping charge of $27.50.
+bot: Is that acceptable?
+user: yes

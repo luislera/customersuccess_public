@@ -11,6 +11,9 @@ jobs:
     steps:
         - uses: actions/checkout@v2
 
-        - name: Execute bot test
+        - name: Execute chat transcript
           shell: cmd
           run: .\tool\BotTestApp\BotTestFramework.Console.exe test --type ChatTranscript --path .\tool\BotTestApp\simple.json --botId 53742b3a-1f04-485c-878c-eca03005a462 --tenantId b25036e3-de39-4fec-a4aa-bda41b870d38 --verbose
+        - name: Execute bot test
+          shell: cmd
+          run: echo %errorlevel%

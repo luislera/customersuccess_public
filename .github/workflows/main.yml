@@ -3,22 +3,14 @@ name: run-test-tool
 on:
   workflow_dispatch:
     inputs:
-      userName:
-        required: false
-        description: "userName"
-      greeting:
-        required: false
-        description: "greeting"
-
+      
 jobs:
   run-test-tool:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     name: test
     steps:
         - uses: actions/checkout@v2
 
-        - name: Make app executable
-          run: chmod +x ./tool/CommandLineApp
         - name: Execute bot test
-          shell: bash
-          run: ./tool/CommandLineApp "${{ github.event.inputs.userName }}" --greeting "${{ github.event.inputs.greeting }}" -v
+          shell: cmd
+          run: ./tool/BotTestApp/BotTestFramework.Console.exe --type ChatTranscript --path ./complex.json --botId 53742b3a-1f04-485c-878c-eca03005a462 --tenantId b25036e3-de39-4fec-a4aa-bda41b870d38

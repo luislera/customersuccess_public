@@ -13,4 +13,4 @@ jobs:
 
         - name: Execute bot test
           shell: cmd
-          run: ./tool/BotTestApp/BotTestFramework.Console.exe --type ChatTranscript --path ./tool/BotTestApp/complex.json --botId 53742b3a-1f04-485c-878c-eca03005a462 --tenantId b25036e3-de39-4fec-a4aa-bda41b870d38
+          run: ./tool/BotTestApp/BotTestFramework.Console.exe test --type ChatTranscript --path ./tool/BotTestApp/complex.json --botId 53742b3a-1f04-485c-878c-eca03005a462 --tenantId b25036e3-de39-4fec-a4aa-bda41b870d38
